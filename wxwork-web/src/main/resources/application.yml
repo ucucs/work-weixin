@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    include: wxwork # Default active profile
+  servlet:
+    multipart: # Multipart configuration
+      max-file-size: 20MB
+      max-request-size: 30MB
+  jackson: # Jackson datatime format
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+server:
+  port: 8080 # HTTP port
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    encoding: #Solve the messy code problem
+      charset: UTF-8
+      enabled: true
+      force: true
+      force-request: true
+
+management: # actuator security
+  endpoint:
+    health:
+      enabled: true
+    shutdown:
+      enabled: false
+

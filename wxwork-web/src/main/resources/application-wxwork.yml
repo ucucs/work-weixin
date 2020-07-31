@@ -1,0 +1,12 @@
+wxwork:
+  config:
+    base-url: https://qyapi.weixin.qq.com/cgi-bin
+    corp-id: wwbed5b3d4eaf1d106
+    notify-token: O53SHNMREH7eBv2c35MPS
+    notify-aes-key: urgJEKOKsSBzX2yRgOyx71rnQPI8V7GvMG9oGdTGTW1
+    category-secrets:
+      corp: 9naHyjwYv9kfFzcmRJpmWzVPhwU-_Ew_qmRZTIXQG0g
+      contact: 4nXKE1vQLJHpsR_ECWkYy7u-iEhQLS90rJEp6_AK9Ts
+      customer: JvNBH2-1EsX8QChu2646MzMDJ5CDg2gCi9JmPtr3LsI
+      app1000006: XNgH2y-u3N-KkW2dJd16OdwwOM74uTNRKIs3padQjHk
+      miniApp1000008: 0hduis92aO3lwAQ6rqdgk3zveOVNyUu07VMoQJdT_RY

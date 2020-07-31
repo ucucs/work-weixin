@@ -1,0 +1,2 @@
+#AutoConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.ucucs.wxwork.module.config.OkHttpAutoConfiguration
