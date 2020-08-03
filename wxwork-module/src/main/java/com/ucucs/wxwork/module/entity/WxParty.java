@@ -33,11 +33,11 @@ public class WxParty implements WxBodyConvert {
   public static List<WxParty> parseMsgBody(JsonNode msgNode) {
     ArrayNode partyListNode = msgNode.withArray("department");
     List<WxParty> partyList = new ArrayList<>();
-    partyListNode.forEach(partyNode -> partyList.add(parseSingleNode(partyNode)));
+    partyListNode.forEach(partyNode -> partyList.add(parsePartyNode(partyNode)));
     return partyList;
   }
 
-  public static WxParty parseSingleNode(JsonNode partyNode) {
+  public static WxParty parsePartyNode(JsonNode partyNode) {
     WxParty party = new WxParty();
     party.setId(partyNode.get("id").asLong());
     party.setName(partyNode.get("name").asText());
