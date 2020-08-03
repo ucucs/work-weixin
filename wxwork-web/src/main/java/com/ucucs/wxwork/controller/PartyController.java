@@ -1,8 +1,8 @@
 package com.ucucs.wxwork.controller;
 
 import com.ucucs.wxwork.entity.Result;
-import com.ucucs.wxwork.entity.param.PartyCreateParam;
-import com.ucucs.wxwork.entity.param.PartyUpdateParam;
+import com.ucucs.wxwork.entity.param.party.PartyCreateParam;
+import com.ucucs.wxwork.entity.param.party.PartyUpdateParam;
 import com.ucucs.wxwork.module.entity.WxParty;
 import com.ucucs.wxwork.module.util.BeanMapper;
 import com.ucucs.wxwork.service.PartyService;
@@ -29,28 +29,28 @@ public class PartyController {
   private final PartyService partyService;
 
   @GetMapping("/list")
-  public Result<?> getDepartmentList(@RequestParam Long partyId) {
+  public Result<?> getPartyList(@RequestParam Long partyId) {
     Assert.notNull(partyId, "部门ID不能为空");
     List<WxParty> deptList = partyService.getPartyList(partyId);
     return Result.success(deptList);
   }
 
   @PostMapping("/create")
-  public Result<?> createDepartment(@RequestBody PartyCreateParam partyParam) {
+  public Result<?> createParty(@RequestBody PartyCreateParam partyParam) {
     WxParty party = BeanMapper.mapper(partyParam, WxParty.class);
     Long partyId = partyService.createParty(party);
     return Result.success(partyId);
   }
 
   @PostMapping("/update")
-  public Result<?> updateDepartment(@RequestBody PartyUpdateParam partyParam) {
+  public Result<?> updateParty(@RequestBody PartyUpdateParam partyParam) {
     WxParty party = BeanMapper.mapper(partyParam, WxParty.class);
     partyService.updateParty(party);
     return Result.success();
   }
 
   @GetMapping("/delete")
-  public Result<?> deleteDepartment(@RequestParam Long partyId) {
+  public Result<?> deleteParty(@RequestParam Long partyId) {
     Assert.notNull(partyId, "部门ID不能为空");
     partyService.deleteParty(partyId);
     return Result.success();

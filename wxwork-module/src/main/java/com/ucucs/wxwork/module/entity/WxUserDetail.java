@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class WxUser implements WxBodyConvert {
+public class WxUserDetail {
 
   @JsonProperty("userid")
   private String userId;
@@ -21,23 +21,18 @@ public class WxUser implements WxBodyConvert {
   @JsonProperty("department")
   private Long[] partyIds;
 
-  @JsonProperty("order")
-  private Integer[] orders;
-
   private String position;
   private String mobile;
   private Integer gender;
   private String email;
+  private String avatar;
+
+  @JsonProperty("thumb_avatar")
+  private String thumbAvatar;
 
   private String address;
 
-  @JsonProperty("thumb_avatar")
-  private String avatarMediaId;
-
-  private Integer enable;
-
-  @JsonProperty("to_invite")
-  private Boolean toInvite;
+  private Integer status;
 
   private String alias;
 
@@ -52,26 +47,23 @@ public class WxUser implements WxBodyConvert {
 
   private String telephone;
 
+  @JsonProperty("qr_code")
+  private String qrCode;
+
   @JsonProperty("external_position")
   private String externalPosition;
 
   @JsonProperty("external_profile")
   private Map<String, Object> externalProfile;
 
+  @JsonProperty("open_userid")
+  private String openUserId;
+
   @JsonProperty("main_department")
   private String mainPartyId;
 
-  @Override
-  public Map<String, Object> wrapMsgBody() {
-    return JsonUtil.beanToMap(this);
-  }
-
-  public static List<WxUser> parseMsgBody(JsonNode msgNode) {
+  public static List<WxUserDetail> parseMsgBody(JsonNode msgNode) {
     ArrayNode userListNode = msgNode.withArray("userlist");
-    return JsonUtil.nodeToBeanList(userListNode, WxUser.class);
-  }
-
-  public static WxUser parseSinge(JsonNode msgNode) {
-    return JsonUtil.nodeToBean(msgNode, WxUser.class);
+    return JsonUtil.nodeToBeanList(userListNode, WxUserDetail.class);
   }
 }

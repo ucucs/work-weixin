@@ -1,6 +1,6 @@
 wxwork:
   config:
-    base-url: https://qyapi.weixin.qq.com/cgi-bin
+    base-url: https://qyapi.weixin.qq.com/cgi-bin/
     corp-id: wwbed5b3d4eaf1d106
     notify-token: O53SHNMREH7eBv2c35MPS
     notify-aes-key: urgJEKOKsSBzX2yRgOyx71rnQPI8V7GvMG9oGdTGTW1

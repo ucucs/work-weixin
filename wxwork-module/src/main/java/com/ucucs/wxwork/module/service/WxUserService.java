@@ -1,8 +1,8 @@
 package com.ucucs.wxwork.module.service;
 
 import com.ucucs.wxwork.module.entity.WxUser;
+import com.ucucs.wxwork.module.entity.WxUserDetail;
 import java.util.List;
-import java.util.Map;
 
 /**
  * coding.
@@ -11,9 +11,9 @@ import java.util.Map;
  */
 public interface WxUserService {
 
-  List<WxUser> list(Long partyId, Boolean fetchChild, Integer status);
+  List<WxUserDetail> list(Long partyId, Boolean fetchChild);
 
-  List<WxUser> listSimple(Long partyId, Boolean fetchChild, Integer status);
+  List<WxUserDetail> listSimple(Long partyId, Boolean fetchChild);
 
   void create(WxUser user);
 
@@ -23,9 +23,5 @@ public interface WxUserService {
 
   WxUser getById(String userId);
 
-  String getUserId(String mobile);
-
-  Map<String, String> userIdToOpenId(String userId, Integer agentId);
-
-  String openIdToUserId(String openId);
+  String userIdToOpenId(String userId);
 }
