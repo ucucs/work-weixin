@@ -5,10 +5,7 @@ import com.ucucs.wxwork.core.constant.ApiPathConsts.User;
 import com.ucucs.wxwork.core.constant.WxWorkConsts.RequestType;
 import com.ucucs.wxwork.core.constant.WxWorkConsts.TokenType;
 import com.ucucs.wxwork.core.util.MapBuilder;
-<<<<<<< HEAD
 import com.ucucs.wxwork.module.entity.UserSimple;
-=======
->>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
 import com.ucucs.wxwork.module.entity.WxUser;
 import com.ucucs.wxwork.module.entity.WxUserDetail;
 import com.ucucs.wxwork.module.service.WxUserService;
@@ -32,12 +29,8 @@ public class WxUserServiceImpl implements WxUserService {
     return wxWorkService.getAccessToken(TokenType.CONTACT);
   }
 
-<<<<<<< HEAD
   @Override
   public List<WxUserDetail> list(Long partyId, Boolean fetchChild) {
-=======
-  private List<WxUserDetail> getUserList(Long partyId, Boolean fetchChild, String urlPath) {
->>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
     String accessToken = getAccessToken();
 
     MapBuilder<String, Object> paramBuilder = new MapBuilder<>();
@@ -46,17 +39,12 @@ public class WxUserServiceImpl implements WxUserService {
         .put("fetch_child", fetchChild ? 1 : 0)
         .put("access_token", accessToken);
 
-<<<<<<< HEAD
     JsonNode rspNode =
         wxWorkService.getRsp(User.USER_LIST, paramBuilder.build(), null, RequestType.GET);
-=======
-    JsonNode rspNode = wxWorkService.getRsp(urlPath, paramBuilder.build(), null, RequestType.GET);
->>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
     return WxUserDetail.parseMsgBody(rspNode);
   }
 
   @Override
-<<<<<<< HEAD
   public List<UserSimple> listSimple(Long partyId, Boolean fetchChild) {
     String accessToken = getAccessToken();
 
@@ -69,15 +57,6 @@ public class WxUserServiceImpl implements WxUserService {
     JsonNode rspNode =
         wxWorkService.getRsp(User.USER_SIMPLE_LIST, paramBuilder.build(), null, RequestType.GET);
     return UserSimple.parseMsgBody(rspNode);
-=======
-  public List<WxUserDetail> list(Long partyId, Boolean fetchChild) {
-    return getUserList(partyId, fetchChild, User.USER_LIST);
-  }
-
-  @Override
-  public List<WxUserDetail> listSimple(Long partyId, Boolean fetchChild) {
-    return getUserList(partyId, fetchChild, User.USER_SIMPLE_LIST);
->>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
   }
 
   @Override

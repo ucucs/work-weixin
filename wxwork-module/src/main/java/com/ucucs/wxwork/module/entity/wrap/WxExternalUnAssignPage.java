@@ -1,13 +1,10 @@
 package com.ucucs.wxwork.module.entity.wrap;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-<<<<<<< HEAD
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.ucucs.wxwork.module.util.JsonUtil;
-=======
 import com.ucucs.wxwork.module.entity.UnAssignInfo;
->>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
+import com.ucucs.wxwork.module.util.JsonUtil;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +23,6 @@ public class WxExternalUnAssignPage {
 
   @JsonProperty("is_last")
   private Boolean lastFlag;
-<<<<<<< HEAD
 
   public static WxExternalUnAssignPage parseMsgBody(JsonNode msgNode) {
     ArrayNode userListNode = msgNode.withArray("info");
@@ -39,6 +35,4 @@ public class WxExternalUnAssignPage {
     unAssignPage.setLastFlag(lastFlag);
     return unAssignPage;
   }
-=======
->>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
 }
