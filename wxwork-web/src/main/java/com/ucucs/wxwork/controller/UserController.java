@@ -83,4 +83,11 @@ public class UserController {
     String openId = userService.userIdToOpenId(userId);
     return Result.success(openId);
   }
+
+  @GetMapping("/toUserId")
+  public Result<?> openIdToUserId(@RequestParam String openId) {
+    Assert.hasText(openId, "外部ID不能为空");
+    String userId = userService.openIdToUserId(openId);
+    return Result.success(userId);
+  }
 }

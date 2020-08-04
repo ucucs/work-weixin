@@ -46,4 +46,8 @@ public class UserService {
   public String userIdToOpenId(String userId) {
     return wxUserService.userIdToOpenId(userId);
   }
+
+  public String openIdToUserId(String openId) {
+    return wxUserService.openIdToUserId(openId);
+  }
 }

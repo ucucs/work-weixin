@@ -131,4 +131,24 @@ public class WxUserServiceImpl implements WxUserService {
 
     return rspNode.get("openid").asText();
   }
+
+  @Override
+  public String openIdToUserId(String openId) {
+    String accessToken = getAccessToken();
+
+    MapBuilder<String, Object> paramBuilder = new MapBuilder<>();
+    paramBuilder.put("access_token", accessToken);
+
+    MapBuilder<String, Object> bodyBuilder = new MapBuilder<>();
+    bodyBuilder.put("openid", openId);
+
+    JsonNode rspNode =
+        wxWorkService.getRsp(
+            User.USER_CONVERT_TO_USERID,
+            paramBuilder.build(),
+            bodyBuilder.build(),
+            RequestType.POST_JSON);
+
+    return rspNode.get("userid").asText();
+  }
 }

@@ -25,4 +25,6 @@ public interface WxUserService {
   WxUser getById(String userId);
 
   String userIdToOpenId(String userId);
+
+  String openIdToUserId(String openId);
 }
