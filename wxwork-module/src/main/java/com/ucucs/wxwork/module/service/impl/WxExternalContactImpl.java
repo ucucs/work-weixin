@@ -4,10 +4,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.ucucs.wxwork.core.constant.ApiPathConsts.ExternalContact;
 import com.ucucs.wxwork.core.constant.WxWorkConsts.RequestType;
 import com.ucucs.wxwork.core.constant.WxWorkConsts.TokenType;
+<<<<<<< HEAD
 import com.ucucs.wxwork.core.util.ArrayUtil;
 import com.ucucs.wxwork.core.util.MapBuilder;
 import com.ucucs.wxwork.module.entity.WxExternalContactDetail;
 import com.ucucs.wxwork.module.entity.wrap.GroupChatStatus;
+=======
+import com.ucucs.wxwork.core.util.MapBuilder;
+>>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
 import com.ucucs.wxwork.module.entity.wrap.WxExternalUnAssignPage;
 import com.ucucs.wxwork.module.service.WxExternalContactService;
 import com.ucucs.wxwork.module.service.WxWorkService;
@@ -46,6 +50,7 @@ public class WxExternalContactImpl implements WxExternalContactService {
 
   @Override
   public WxExternalUnAssignPage listUnAssigned(Integer pageIndex, Integer pageSize) {
+<<<<<<< HEAD
     String accessToken = getAccessToken();
 
     MapBuilder<String, Object> paramBuilder = new MapBuilder<>();
@@ -139,5 +144,8 @@ public class WxExternalContactImpl implements WxExternalContactService {
         wxWorkService.getRsp(
             ExternalContact.GET_CONTACT_DETAIL, paramBuilder.build(), null, RequestType.GET);
     return WxExternalContactDetail.parseMsgBody(rspNode);
+=======
+    return null;
+>>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
   }
 }

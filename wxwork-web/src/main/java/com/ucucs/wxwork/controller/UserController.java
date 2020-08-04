@@ -3,7 +3,10 @@ package com.ucucs.wxwork.controller;
 import com.ucucs.wxwork.entity.Result;
 import com.ucucs.wxwork.entity.param.user.UserCreateParam;
 import com.ucucs.wxwork.entity.param.user.UserUpdateParam;
+<<<<<<< HEAD
 import com.ucucs.wxwork.module.entity.UserSimple;
+=======
+>>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
 import com.ucucs.wxwork.module.entity.WxUser;
 import com.ucucs.wxwork.module.entity.WxUserDetail;
 import com.ucucs.wxwork.module.util.BeanMapper;
@@ -44,7 +47,11 @@ public class UserController {
       @RequestParam Long partyId,
       @RequestParam(required = false, defaultValue = "0") Integer fetchChild) {
     Assert.notNull(partyId, "部门ID不能为空");
+<<<<<<< HEAD
     List<UserSimple> userList = userService.listSimple(partyId, fetchChild == 1);
+=======
+    List<WxUserDetail> userList = userService.listSimple(partyId, fetchChild == 1);
+>>>>>>> 917a95a906178c57a24a45cf300d1ce78603509b
     return Result.success(userList);
   }
 
