@@ -3,7 +3,7 @@ package com.ucucs.wxwork.module.entity;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.ucucs.wxwork.core.util.MapBuilder;
-import java.util.ArrayList;
+import com.ucucs.wxwork.module.util.JsonUtil;
 import java.util.List;
 import java.util.Map;
 import lombok.Getter;
@@ -32,18 +32,6 @@ public class WxParty implements WxBodyConvert {
 
   public static List<WxParty> parseMsgBody(JsonNode msgNode) {
     ArrayNode partyListNode = msgNode.withArray("department");
-    List<WxParty> partyList = new ArrayList<>();
-    partyListNode.forEach(partyNode -> partyList.add(parseSingleNode(partyNode)));
-    return partyList;
-  }
-
-  public static WxParty parseSingleNode(JsonNode partyNode) {
-    WxParty party = new WxParty();
-    party.setId(partyNode.get("id").asLong());
-    party.setName(partyNode.get("name").asText());
-    party.setEnName(partyNode.get("name_en").asText());
-    party.setParentId(partyNode.get("parentid").asLong());
-    party.setOrder(partyNode.get("order").asLong());
-    return party;
+    return JsonUtil.nodeToBeanList(partyListNode, WxParty.class);
   }
 }

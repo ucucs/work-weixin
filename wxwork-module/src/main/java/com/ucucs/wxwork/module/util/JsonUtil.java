@@ -1,7 +1,7 @@
 package com.ucucs.wxwork.module.util;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
@@ -39,7 +40,7 @@ public class JsonUtil {
 
   static {
     // 对象的所有字段全部列入
-    objectMapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
+    objectMapper.setSerializationInclusion(Include.NON_NULL);
     // 取消默认转换timestamps形式
     objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
     // 忽略空Bean转json的错误
@@ -50,11 +51,11 @@ public class JsonUtil {
     objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
   }
 
-  public static ObjectNode createObjectNode() {
+  public static ObjectNode createNode() {
     return objectMapper.createObjectNode();
   }
 
-  public static ObjectMapper getObjectMapper() {
+  public static ObjectMapper getMapper() {
     return objectMapper.copy();
   }
 
@@ -232,6 +233,15 @@ public class JsonUtil {
     }
   }
 
+  public static Map<String, Object> beanToMap(Object object) {
+    try {
+      return objectMapper.convertValue(object, new TypeReference<Map<String, Object>>() {});
+    } catch (Exception e) {
+      LOG.warn("Parse String to Map Type Object error : {}" + e.getMessage());
+      return null;
+    }
+  }
+
   /**
    * 字典类型转换成对象.
    *
@@ -242,6 +252,18 @@ public class JsonUtil {
    */
   public static <T> T mapToBean(Map<?, ?> mapSource, Class<T> valueClass) {
     return objectMapper.convertValue(mapSource, valueClass);
+  }
+
+  public static <T> T nodeToBean(JsonNode jsonNode, Class<T> valueClass) {
+    return objectMapper.convertValue(jsonNode, valueClass);
+  }
+
+  public static <T> List<T> nodeToBeanList(ArrayNode arrayNode, Class<T> valueClass) {
+    List<T> valueList = new ArrayList<>();
+    for (JsonNode jsonNode : arrayNode) {
+      valueList.add(objectMapper.convertValue(jsonNode, valueClass));
+    }
+    return valueList;
   }
 
   /**
