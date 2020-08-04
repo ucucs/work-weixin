@@ -5,6 +5,7 @@ import com.ucucs.wxwork.core.constant.ApiPathConsts.User;
 import com.ucucs.wxwork.core.constant.WxWorkConsts.RequestType;
 import com.ucucs.wxwork.core.constant.WxWorkConsts.TokenType;
 import com.ucucs.wxwork.core.util.MapBuilder;
+import com.ucucs.wxwork.module.entity.UserSimple;
 import com.ucucs.wxwork.module.entity.WxUser;
 import com.ucucs.wxwork.module.entity.WxUserDetail;
 import com.ucucs.wxwork.module.service.WxUserService;
@@ -28,7 +29,8 @@ public class WxUserServiceImpl implements WxUserService {
     return wxWorkService.getAccessToken(TokenType.CONTACT);
   }
 
-  private List<WxUserDetail> getUserList(Long partyId, Boolean fetchChild, String urlPath) {
+  @Override
+  public List<WxUserDetail> list(Long partyId, Boolean fetchChild) {
     String accessToken = getAccessToken();
 
     MapBuilder<String, Object> paramBuilder = new MapBuilder<>();
@@ -37,18 +39,24 @@ public class WxUserServiceImpl implements WxUserService {
         .put("fetch_child", fetchChild ? 1 : 0)
         .put("access_token", accessToken);
 
-    JsonNode rspNode = wxWorkService.getRsp(urlPath, paramBuilder.build(), null, RequestType.GET);
+    JsonNode rspNode =
+        wxWorkService.getRsp(User.USER_LIST, paramBuilder.build(), null, RequestType.GET);
     return WxUserDetail.parseMsgBody(rspNode);
   }
 
   @Override
-  public List<WxUserDetail> list(Long partyId, Boolean fetchChild) {
-    return getUserList(partyId, fetchChild, User.USER_LIST);
-  }
+  public List<UserSimple> listSimple(Long partyId, Boolean fetchChild) {
+    String accessToken = getAccessToken();
 
-  @Override
-  public List<WxUserDetail> listSimple(Long partyId, Boolean fetchChild) {
-    return getUserList(partyId, fetchChild, User.USER_SIMPLE_LIST);
+    MapBuilder<String, Object> paramBuilder = new MapBuilder<>();
+    paramBuilder
+        .put("department_id", partyId)
+        .put("fetch_child", fetchChild ? 1 : 0)
+        .put("access_token", accessToken);
+
+    JsonNode rspNode =
+        wxWorkService.getRsp(User.USER_SIMPLE_LIST, paramBuilder.build(), null, RequestType.GET);
+    return UserSimple.parseMsgBody(rspNode);
   }
 
   @Override

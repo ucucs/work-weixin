@@ -32,5 +32,5 @@ public class FollowUser {
   @JsonProperty("add_way")
   private Integer addWay;
 
-  private List<WxTag> tags;
+  private List<FollowTag> tags;
 }
