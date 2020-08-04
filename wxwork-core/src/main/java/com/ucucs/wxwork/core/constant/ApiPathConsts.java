@@ -105,8 +105,8 @@ public class ApiPathConsts {
 
   public static class ExternalContact {
     public static final String GET_FOLLOW_USER_LIST = "externalcontact/get_follow_user_list";
-    public static final String GET_CONTACT_DETAIL = "externalcontact/get?external_userid=";
-    public static final String LIST_EXTERNAL_CONTACT = "externalcontact/list?userid=";
+    public static final String GET_CONTACT_DETAIL = "externalcontact/get";
+    public static final String LIST_EXTERNAL_CONTACT = "externalcontact/list";
     public static final String LIST_UNASSIGNED_CONTACT = "externalcontact/get_unassigned_list";
     public static final String TRANSFER_UNASSIGNED_CONTACT = "externalcontact/transfer";
     public static final String GROUP_CHAT_LIST = "externalcontact/groupchat/list";
