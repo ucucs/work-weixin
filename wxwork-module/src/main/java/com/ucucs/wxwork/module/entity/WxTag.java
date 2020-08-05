@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.module.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.ucucs.wxwork.module.util.JsonUtil;
@@ -12,10 +12,10 @@ import lombok.Setter;
 @Setter
 public class WxTag {
 
-  @JsonProperty("tagid")
+  @JsonAlias(value = "tagid")
   private String id;
 
-  @JsonProperty("tagname")
+  @JsonAlias(value = "tagname")
   private String name;
 
   public static List<WxTag> parseMsgBody(JsonNode msgNode) {

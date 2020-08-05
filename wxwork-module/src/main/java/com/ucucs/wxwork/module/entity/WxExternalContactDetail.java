@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.module.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.ucucs.wxwork.module.util.JsonUtil;
@@ -13,37 +13,37 @@ import lombok.Setter;
 @Setter
 public class WxExternalContactDetail {
 
-  @JsonProperty("external_userid")
+  @JsonAlias(value = "external_userid")
   private String externalUserId;
 
-  @JsonProperty("position")
+  @JsonAlias(value = "position")
   private String position;
 
-  @JsonProperty("name")
+  @JsonAlias(value = "name")
   private String name;
 
-  @JsonProperty("avatar")
+  @JsonAlias(value = "avatar")
   private String avatar;
 
-  @JsonProperty("corp_name")
+  @JsonAlias(value = "corp_name")
   private String corpName;
 
-  @JsonProperty("corp_full_name")
+  @JsonAlias(value = "corp_full_name")
   private String corpFullName;
 
-  @JsonProperty("type")
+  @JsonAlias(value = "type")
   private Integer type;
 
-  @JsonProperty("gender")
+  @JsonAlias(value = "gender")
   private Integer gender;
 
-  @JsonProperty("unionid")
+  @JsonAlias(value = "unionid")
   private String unionId;
 
-  @JsonProperty("follow_user")
+  @JsonAlias(value = "follow_user")
   private List<FollowUser> followedUsers;
 
-  @JsonProperty("external_profile")
+  @JsonAlias(value = "external_profile")
   private Map<String, Object> externalProfile;
 
   public static WxExternalContactDetail parseMsgBody(JsonNode msgNode) {

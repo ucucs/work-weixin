@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.module.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,10 +8,10 @@ import lombok.Setter;
 @Setter
 public class FollowTag {
 
-  @JsonProperty("group_name")
+  @JsonAlias(value = "group_name")
   private String groupName;
 
-  @JsonProperty("tag_name")
+  @JsonAlias(value = "tag_name")
   private String tagName;
 
   private Integer type;

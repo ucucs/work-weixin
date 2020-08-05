@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.module.entity.wrap;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.ucucs.wxwork.module.util.JsonUtil;
@@ -12,10 +12,10 @@ import lombok.Setter;
 @Setter
 public class GroupChatStatus {
 
-  @JsonProperty("chat_id")
+  @JsonAlias(value = "chat_id")
   private String chatId;
 
-  @JsonProperty("status")
+  @JsonAlias(value = "status")
   private Integer status;
 
   public static List<GroupChatStatus> parseMsgBody(JsonNode msgNode) {

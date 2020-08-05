@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.module.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.ucucs.wxwork.module.util.JsonUtil;
@@ -13,15 +13,15 @@ import lombok.Setter;
 @Setter
 public class WxUser implements WxBodyConvert {
 
-  @JsonProperty("userid")
+  @JsonAlias(value = "userid")
   private String userId;
 
   private String name;
 
-  @JsonProperty("department")
+  @JsonAlias(value = "department")
   private Long[] partyIds;
 
-  @JsonProperty("order")
+  @JsonAlias(value = "order")
   private Integer[] orders;
 
   private String position;
@@ -31,34 +31,34 @@ public class WxUser implements WxBodyConvert {
 
   private String address;
 
-  @JsonProperty("thumb_avatar")
+  @JsonAlias(value = "thumb_avatar")
   private String avatarMediaId;
 
   private Integer enable;
 
-  @JsonProperty("to_invite")
+  @JsonAlias(value = "to_invite")
   private Boolean toInvite;
 
   private String alias;
 
-  @JsonProperty("is_leader_in_dept")
+  @JsonAlias(value = "is_leader_in_dept")
   private Integer[] isLeaderInParty;
 
-  @JsonProperty("hide_mobile")
+  @JsonAlias(value = "hide_mobile")
   private Integer hideMobile;
 
-  @JsonProperty("english_name")
+  @JsonAlias(value = "english_name")
   private String englishName;
 
   private String telephone;
 
-  @JsonProperty("external_position")
+  @JsonAlias(value = "external_position")
   private String externalPosition;
 
-  @JsonProperty("external_profile")
+  @JsonAlias(value = "external_profile")
   private Map<String, Object> externalProfile;
 
-  @JsonProperty("main_department")
+  @JsonAlias(value = "main_department")
   private String mainPartyId;
 
   @Override

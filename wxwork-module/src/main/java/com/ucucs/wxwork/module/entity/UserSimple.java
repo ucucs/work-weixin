@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.module.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.ucucs.wxwork.module.util.JsonUtil;
@@ -12,15 +12,15 @@ import lombok.Setter;
 @Setter
 public class UserSimple {
 
-  @JsonProperty("userid")
+  @JsonAlias(value = "userid")
   private String userId;
 
   private String name;
 
-  @JsonProperty("department")
+  @JsonAlias(value = "department")
   private Long[] partyIds;
 
-  @JsonProperty("open_userid")
+  @JsonAlias(value = "open_userid")
   private String openUserId;
 
   public static List<UserSimple> parseMsgBody(JsonNode msgNode) {

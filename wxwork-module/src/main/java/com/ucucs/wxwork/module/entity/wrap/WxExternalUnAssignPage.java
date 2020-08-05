@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.module.entity.wrap;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.ucucs.wxwork.module.entity.UnAssignInfo;
@@ -18,10 +18,10 @@ import lombok.Setter;
 @Setter
 public class WxExternalUnAssignPage {
 
-  @JsonProperty("info")
+  @JsonAlias(value = "info")
   private List<UnAssignInfo> unAssignInfos;
 
-  @JsonProperty("is_last")
+  @JsonAlias(value = "is_last")
   private Boolean lastFlag;
 
   public static WxExternalUnAssignPage parseMsgBody(JsonNode msgNode) {

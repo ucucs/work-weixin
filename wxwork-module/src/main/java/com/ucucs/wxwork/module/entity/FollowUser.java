@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.module.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,27 +9,27 @@ import lombok.Setter;
 @Setter
 public class FollowUser {
 
-  @JsonProperty("userid")
+  @JsonAlias(value = "userid")
   private String userId;
 
   private String remark;
   private String description;
 
-  @JsonProperty("createtime")
+  @JsonAlias(value = "createtime")
   private Long createTime;
 
   private String state;
 
-  @JsonProperty("remark_corp_name")
+  @JsonAlias(value = "remark_corp_name")
   private String remarkCorpName;
 
-  @JsonProperty("remark_mobiles")
+  @JsonAlias(value = "remark_mobiles")
   private String[] remarkMobiles;
 
-  @JsonProperty("oper_userid")
+  @JsonAlias(value = "oper_userid")
   private String operUserId;
 
-  @JsonProperty("add_way")
+  @JsonAlias(value = "add_way")
   private Integer addWay;
 
   private List<FollowTag> tags;

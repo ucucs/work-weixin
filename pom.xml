@@ -30,6 +30,7 @@
     <module>wxwork-core</module>
     <module>wxwork-module</module>
     <module>wxwork-web</module>
+    <module>wxwork-taskjob</module>
   </modules>
 
   <dependencies>
