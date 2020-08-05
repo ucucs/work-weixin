@@ -4,7 +4,7 @@ public class ApiPathConsts {
   public static final String API_BASE_URL = "https://qyapi.weixin.qq.com/cgi-bin/";
 
   public static final String GET_JSAPI_TICKET = "get_jsapi_ticket";
-  public static final String GET_AGENT_CONFIG_TICKET = "ticket/get?&type=agent_config";
+  public static final String GET_AGENT_CONFIG_TICKET = "ticket/get";
   public static final String MESSAGE_SEND = "message/send";
   public static final String GET_CALLBACK_IP = "getcallbackip";
   public static final String BATCH_REPLACE_PARTY = "batch/replaceparty";

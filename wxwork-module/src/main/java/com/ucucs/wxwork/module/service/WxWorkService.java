@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public interface WxWorkService {
 
+  String getCorpId();
+
   String getAccessToken(String category);
 
   JsonNode getRsp(

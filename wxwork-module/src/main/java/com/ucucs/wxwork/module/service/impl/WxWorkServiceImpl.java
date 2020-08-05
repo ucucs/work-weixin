@@ -43,6 +43,11 @@ public class WxWorkServiceImpl implements WxWorkService {
           .build();
 
   @Override
+  public String getCorpId() {
+    return wxConfigManage.getCorpId();
+  }
+
+  @Override
   public String getAccessToken(String category) {
     String cacheKey = String.format("WeiXin_%s_%s", wxConfigManage.getCorpId(), category);
     String accessToken = TOKEN_CACHE.getIfPresent(cacheKey);
