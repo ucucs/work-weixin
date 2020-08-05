@@ -1,6 +1,7 @@
 package com.ucucs.wxwork.module.service;
 
 import com.ucucs.wxwork.module.entity.WxExternalContactDetail;
+import com.ucucs.wxwork.module.entity.WxExternalGroupChatDetail;
 import com.ucucs.wxwork.module.entity.wrap.GroupChatStatus;
 import com.ucucs.wxwork.module.entity.wrap.WxExternalUnAssignPage;
 import java.util.List;
@@ -24,4 +25,9 @@ public interface WxExternalContactService {
   void transferGroupChat(String[] groupChatIds, String takeOverUserId);
 
   WxExternalContactDetail getContactDetail(String externalUserId);
+
+  WxExternalGroupChatDetail getGroupChatDetail(String chatId);
+
+  void markUserWithTag(
+      String userId, String externalUserId, List<String> addTagIds, List<String> removeTagIds);
 }

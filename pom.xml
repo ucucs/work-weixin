@@ -16,7 +16,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <java.version>1.8</java.version>
+    <java.version>11</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,6 +24,7 @@
 
     <dom4j.version>2.1.3</dom4j.version>
     <commons-codec.version>1.10</commons-codec.version>
+    <mybatis-starter.version>2.1.3</mybatis-starter.version>
   </properties>
 
   <modules>
@@ -31,6 +32,7 @@
     <module>wxwork-module</module>
     <module>wxwork-web</module>
     <module>wxwork-taskjob</module>
+    <module>wxwork-codegen</module>
   </modules>
 
   <dependencies>
@@ -53,6 +55,12 @@
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>${commons-codec.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>${mybatis-starter.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

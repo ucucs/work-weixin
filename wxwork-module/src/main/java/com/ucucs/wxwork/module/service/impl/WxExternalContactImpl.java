@@ -7,6 +7,7 @@ import com.ucucs.wxwork.core.constant.WxWorkConsts.TokenType;
 import com.ucucs.wxwork.core.util.ArrayUtil;
 import com.ucucs.wxwork.core.util.MapBuilder;
 import com.ucucs.wxwork.module.entity.WxExternalContactDetail;
+import com.ucucs.wxwork.module.entity.WxExternalGroupChatDetail;
 import com.ucucs.wxwork.module.entity.wrap.GroupChatStatus;
 import com.ucucs.wxwork.module.entity.wrap.WxExternalUnAssignPage;
 import com.ucucs.wxwork.module.service.WxExternalContactService;
@@ -139,5 +140,40 @@ public class WxExternalContactImpl implements WxExternalContactService {
         wxWorkService.getRsp(
             ExternalContact.GET_CONTACT_DETAIL, paramBuilder.build(), null, RequestType.GET);
     return WxExternalContactDetail.parseMsgBody(rspNode);
+  }
+
+  @Override
+  public WxExternalGroupChatDetail getGroupChatDetail(String chatId) {
+    String accessToken = getAccessToken();
+
+    MapBuilder<String, Object> paramBuilder = new MapBuilder<>();
+    paramBuilder.put("chat_id", chatId).put("access_token", accessToken);
+
+    JsonNode rspNode =
+        wxWorkService.getRsp(
+            ExternalContact.GROUP_CHAT_INFO, paramBuilder.build(), null, RequestType.GET);
+    return WxExternalGroupChatDetail.parseMsgBody(rspNode);
+  }
+
+  @Override
+  public void markUserWithTag(
+      String userId, String externalUserId, List<String> addTagIds, List<String> removeTagIds) {
+    String accessToken = getAccessToken();
+
+    MapBuilder<String, Object> paramBuilder = new MapBuilder<>();
+    paramBuilder.put("access_token", accessToken);
+
+    MapBuilder<String, Object> bodyBuilder = new MapBuilder<>();
+    paramBuilder
+        .put("userid", userId)
+        .put("external_userid", externalUserId)
+        .put("add_tag", addTagIds)
+        .put("remove_tag", removeTagIds);
+
+    wxWorkService.getRsp(
+        ExternalContact.MARK_EXTERNAL_TAG,
+        paramBuilder.build(),
+        bodyBuilder.build(),
+        RequestType.POST_JSON);
   }
 }

@@ -1,6 +1,7 @@
 package com.ucucs.wxwork.service;
 
 import com.ucucs.wxwork.module.entity.WxExternalContactDetail;
+import com.ucucs.wxwork.module.entity.WxExternalGroupChatDetail;
 import com.ucucs.wxwork.module.entity.wrap.GroupChatStatus;
 import com.ucucs.wxwork.module.entity.wrap.WxExternalUnAssignPage;
 import com.ucucs.wxwork.module.service.WxExternalContactService;
@@ -37,5 +38,14 @@ public class ExternalContactService {
 
   public WxExternalContactDetail getContactDetail(String externalUserId) {
     return wxExternalContactService.getContactDetail(externalUserId);
+  }
+
+  public WxExternalGroupChatDetail getGroupChatDetail(String chatId) {
+    return wxExternalContactService.getGroupChatDetail(chatId);
+  }
+
+  public void markUserWithTag(
+      String userId, String externalUserId, List<String> addTagIds, List<String> removeTagIds) {
+    wxExternalContactService.markUserWithTag(userId, externalUserId, addTagIds, removeTagIds);
   }
 }

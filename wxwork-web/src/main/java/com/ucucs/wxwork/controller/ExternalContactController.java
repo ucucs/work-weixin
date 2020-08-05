@@ -2,12 +2,14 @@ package com.ucucs.wxwork.controller;
 
 import com.ucucs.wxwork.entity.Result;
 import com.ucucs.wxwork.module.entity.WxExternalContactDetail;
+import com.ucucs.wxwork.module.entity.WxExternalGroupChatDetail;
 import com.ucucs.wxwork.module.entity.wrap.GroupChatStatus;
 import com.ucucs.wxwork.module.entity.wrap.WxExternalUnAssignPage;
 import com.ucucs.wxwork.service.ExternalContactService;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,5 +78,30 @@ public class ExternalContactController {
 
     WxExternalContactDetail detail = externalContactService.getContactDetail(externalUserId);
     return Result.success(detail);
+  }
+
+  @GetMapping("/detailChat")
+  public Result<?> getGroupChatDetail(@RequestParam String chatId) {
+    Assert.hasText(chatId, "群组ID不能为空");
+
+    WxExternalGroupChatDetail detail = externalContactService.getGroupChatDetail(chatId);
+    return Result.success(detail);
+  }
+
+  @PostMapping("/transferContact")
+  public Result<?> transferContact(
+      @RequestParam String userId,
+      @RequestParam String externalUserId,
+      @RequestParam List<String> addTagIds,
+      @RequestParam List<String> removeTagIds) {
+    Assert.hasText(userId, "用户ID不能为空");
+    Assert.hasText(externalUserId, "外部联系人ID不能为空");
+
+    Assert.isTrue(
+        CollectionUtils.isEmpty(addTagIds) && CollectionUtils.isEmpty(removeTagIds),
+        "标记和移除的标签不能同时为空");
+
+    externalContactService.markUserWithTag(userId, externalUserId, addTagIds, removeTagIds);
+    return Result.success();
   }
 }

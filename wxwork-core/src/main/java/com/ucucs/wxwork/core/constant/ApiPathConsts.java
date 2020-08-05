@@ -112,6 +112,7 @@ public class ApiPathConsts {
     public static final String TRANSFER_UNASSIGNED_GROUP_CHAT = "externalcontact/groupchat/transfer";
     public static final String GROUP_CHAT_LIST = "externalcontact/groupchat/list";
     public static final String GROUP_CHAT_INFO = "externalcontact/groupchat/get";
+    public static final String MARK_EXTERNAL_TAG = "externalcontact/mark_tag";
     public static final String LIST_USER_BEHAVIOR_DATA = "externalcontact/get_user_behavior_data";
     public static final String LIST_GROUP_CHAT_DATA = "externalcontact/groupchat/statistic";
   }
