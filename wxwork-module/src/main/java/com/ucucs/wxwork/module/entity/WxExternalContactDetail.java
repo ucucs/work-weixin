@@ -2,6 +2,7 @@ package com.ucucs.wxwork.module.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.ucucs.wxwork.module.util.JsonUtil;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,12 @@ public class WxExternalContactDetail {
 
   public static WxExternalContactDetail parseMsgBody(JsonNode msgNode) {
     JsonNode contactNode = msgNode.get("external_contact");
-    return JsonUtil.nodeToBean(contactNode, WxExternalContactDetail.class);
+    WxExternalContactDetail detail =
+        JsonUtil.nodeToBean(contactNode, WxExternalContactDetail.class);
+
+    ArrayNode followNode = msgNode.withArray("follow_user");
+    List<FollowUser> followedUsers = JsonUtil.nodeToBeanList(followNode, FollowUser.class);
+    detail.setFollowedUsers(followedUsers);
+    return detail;
   }
 }

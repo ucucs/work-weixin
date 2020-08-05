@@ -28,7 +28,7 @@ public class WxExternalContactImpl implements WxExternalContactService {
   private final WxWorkService wxWorkService;
 
   private String getAccessToken() {
-    return wxWorkService.getAccessToken(TokenType.CONTACT);
+    return wxWorkService.getAccessToken(TokenType.CUSTOMER);
   }
 
   @Override

@@ -80,6 +80,8 @@ public class WxWorkServiceImpl implements WxWorkService {
         break;
     }
 
+    LOG.info("微信接口返回{} {} {}", urlParams, bodyObject, rspString);
+
     JsonNode rspNode = JsonUtil.fromJson(rspString);
 
     if (rspNode == null) {
