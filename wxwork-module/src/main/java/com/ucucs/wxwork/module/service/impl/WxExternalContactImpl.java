@@ -147,11 +147,17 @@ public class WxExternalContactImpl implements WxExternalContactService {
     String accessToken = getAccessToken();
 
     MapBuilder<String, Object> paramBuilder = new MapBuilder<>();
-    paramBuilder.put("chat_id", chatId).put("access_token", accessToken);
+    paramBuilder.put("access_token", accessToken);
+
+    MapBuilder<String, Object> bodyBuilder = new MapBuilder<>();
+    bodyBuilder.put("chat_id", chatId);
 
     JsonNode rspNode =
         wxWorkService.getRsp(
-            ExternalContact.GROUP_CHAT_INFO, paramBuilder.build(), null, RequestType.GET);
+            ExternalContact.GROUP_CHAT_INFO,
+            paramBuilder.build(),
+            bodyBuilder.build(),
+            RequestType.POST_JSON);
     return WxExternalGroupChatDetail.parseMsgBody(rspNode);
   }
 
