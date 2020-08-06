@@ -1,8 +1,8 @@
 spring:
   profiles:
     include: # Default active profile
-      - wxwork
       - database
+      - wxwork
   servlet:
     multipart: # Multipart configuration
       max-file-size: 20MB

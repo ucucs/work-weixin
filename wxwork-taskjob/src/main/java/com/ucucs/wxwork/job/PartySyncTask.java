@@ -1,15 +1,19 @@
 package com.ucucs.wxwork.job;
 
+import com.ucucs.wxwork.service.PartyService;
+import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+@AllArgsConstructor
 @Component
 public class PartySyncTask implements JobTask {
 
-  @Scheduled(cron = "0 0/2 * * * ?")
+  private final PartyService partyService;
+
+  @Scheduled(cron = "0/30 * * * * ?")
   @Override
   public void executeTask() {
-
-
+    partyService.syncParty();
   }
 }

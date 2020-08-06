@@ -1,5 +1,6 @@
 package com.ucucs.wxwork.module.entity;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.ucucs.wxwork.core.util.MapBuilder;
@@ -15,7 +16,11 @@ public class WxParty implements WxBodyConvert {
 
   private Long id;
   private String name;
+
+  @JsonAlias("name_en")
   private String enName;
+
+  @JsonAlias("parentid")
   private Long parentId;
   private Long order;
 
