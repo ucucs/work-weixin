@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucucs.wxwork.mapper.WxWorkUserDetailMapper">
+  <resultMap id="BaseResultMap" type="com.ucucs.wxwork.model.WxWorkUserDetail">
+    <id column="user_id" jdbcType="VARCHAR" property="userId"/>
+    <result column="position" jdbcType="VARCHAR" property="position"/>
+    <result column="gender" jdbcType="INTEGER" property="gender"/>
+    <result column="email" jdbcType="VARCHAR" property="email"/>
+    <result column="address" jdbcType="VARCHAR" property="address"/>
+    <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+    <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+    <result column="qr_code" jdbcType="VARCHAR" property="qrCode"/>
+    <result column="external_profile" jdbcType="VARCHAR" property="externalProfile"/>
+    <result column="external_position" jdbcType="VARCHAR" property="externalPosition"/>
+    <result column="ext_attr" jdbcType="VARCHAR" property="extAttr"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, `position`, gender, email, address, avatar, telephone, qr_code, external_profile, 
+    external_position, ext_attr
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from wxwork_user_detail
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete
+    from wxwork_user_detail
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkUserDetail">
+    insert into wxwork_user_detail (user_id, `position`, gender,
+                                    email, address, avatar,
+                                    telephone, qr_code, external_profile,
+                                    external_position, ext_attr)
+    values (#{userId,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER},
+            #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR},
+            #{telephone,jdbcType=VARCHAR}, #{qrCode,jdbcType=VARCHAR},
+            #{externalProfile,jdbcType=VARCHAR},
+            #{externalPosition,jdbcType=VARCHAR}, #{extAttr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkUserDetail">
+    insert into wxwork_user_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="position != null">
+        `position`,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="qrCode != null">
+        qr_code,
+      </if>
+      <if test="externalProfile != null">
+        external_profile,
+      </if>
+      <if test="externalPosition != null">
+        external_position,
+      </if>
+      <if test="extAttr != null">
+        ext_attr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null">
+        #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="externalProfile != null">
+        #{externalProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="externalPosition != null">
+        #{externalPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttr != null">
+        #{extAttr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ucucs.wxwork.model.WxWorkUserDetail">
+    update wxwork_user_detail
+    <set>
+      <if test="position != null">
+        `position` = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null">
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="externalProfile != null">
+        external_profile = #{externalProfile,jdbcType=VARCHAR},
+      </if>
+      <if test="externalPosition != null">
+        external_position = #{externalPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="extAttr != null">
+        ext_attr = #{extAttr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkUserDetail">
+    update wxwork_user_detail
+    set `position`        = #{position,jdbcType=VARCHAR},
+        gender            = #{gender,jdbcType=INTEGER},
+        email             = #{email,jdbcType=VARCHAR},
+        address           = #{address,jdbcType=VARCHAR},
+        avatar            = #{avatar,jdbcType=VARCHAR},
+        telephone         = #{telephone,jdbcType=VARCHAR},
+        qr_code           = #{qrCode,jdbcType=VARCHAR},
+        external_profile  = #{externalProfile,jdbcType=VARCHAR},
+        external_position = #{externalPosition,jdbcType=VARCHAR},
+        ext_attr          = #{extAttr,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

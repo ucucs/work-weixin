@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucucs.wxwork.mapper.WxWorkUserPartyMapper">
+  <resultMap id="BaseResultMap" type="com.ucucs.wxwork.model.WxWorkUserParty">
+    <id column="user_id" jdbcType="VARCHAR" property="userId"/>
+    <id column="party_id" jdbcType="BIGINT" property="partyId"/>
+    <result column="order" jdbcType="INTEGER" property="order"/>
+    <result column="charge_leader" jdbcType="INTEGER" property="chargeLeader"/>
+    <result column="main_party" jdbcType="INTEGER" property="mainParty"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, party_id, `order`, charge_leader, main_party
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkUserPartyKey"
+    resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from wxwork_user_party
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and party_id = #{partyId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkUserPartyKey">
+    delete
+    from wxwork_user_party
+    where user_id = #{userId,jdbcType=VARCHAR}
+      and party_id = #{partyId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkUserParty">
+    insert into wxwork_user_party (user_id, party_id, `order`,
+                                   charge_leader, main_party)
+    values (#{userId,jdbcType=VARCHAR}, #{partyId,jdbcType=BIGINT}, #{order,jdbcType=INTEGER},
+            #{chargeLeader,jdbcType=INTEGER}, #{mainParty,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkUserParty">
+    insert into wxwork_user_party
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="partyId != null">
+        party_id,
+      </if>
+      <if test="order != null">
+        `order`,
+      </if>
+      <if test="chargeLeader != null">
+        charge_leader,
+      </if>
+      <if test="mainParty != null">
+        main_party,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null">
+        #{partyId,jdbcType=BIGINT},
+      </if>
+      <if test="order != null">
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="chargeLeader != null">
+        #{chargeLeader,jdbcType=INTEGER},
+      </if>
+      <if test="mainParty != null">
+        #{mainParty,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ucucs.wxwork.model.WxWorkUserParty">
+    update wxwork_user_party
+    <set>
+      <if test="order != null">
+        `order` = #{order,jdbcType=INTEGER},
+      </if>
+      <if test="chargeLeader != null">
+        charge_leader = #{chargeLeader,jdbcType=INTEGER},
+      </if>
+      <if test="mainParty != null">
+        main_party = #{mainParty,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and party_id = #{partyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkUserParty">
+    update wxwork_user_party
+    set `order`       = #{order,jdbcType=INTEGER},
+        charge_leader = #{chargeLeader,jdbcType=INTEGER},
+        main_party    = #{mainParty,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
+      and party_id = #{partyId,jdbcType=BIGINT}
+  </update>
+</mapper>

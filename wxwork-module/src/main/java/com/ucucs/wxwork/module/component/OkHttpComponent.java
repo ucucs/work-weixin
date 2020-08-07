@@ -1,5 +1,6 @@
 package com.ucucs.wxwork.module.component;
 
+import com.ucucs.wxwork.module.util.HttpUtil;
 import java.util.Map;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -88,19 +89,21 @@ public class OkHttpComponent {
    * @return 带参数地址
    */
   public String buildUrl(String url, Map<String, Object> params) {
-    StringBuilder sb = new StringBuilder(url);
     if (params != null && params.size() > 0) {
-      boolean firstFlag = true;
+      StringBuilder sb = new StringBuilder();
+      int pos = 0;
       for (String key : params.keySet()) {
-        if (firstFlag) {
-          sb.append("?").append(key).append("=").append(params.get(key));
-          firstFlag = false;
-        } else {
-          sb.append("&").append(key).append("=").append(params.get(key));
+        if (pos > 0) {
+          sb.append("&");
         }
+        sb.append(String.format("%s=%s", key, HttpUtil.encode(params.get(key).toString())));
+        pos++;
       }
+
+      return String.format("%s?%s", url, sb.toString());
     }
-    return sb.toString();
+
+    return url;
   }
 
   /**

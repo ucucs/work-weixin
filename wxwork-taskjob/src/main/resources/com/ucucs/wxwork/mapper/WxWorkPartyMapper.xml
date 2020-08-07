@@ -7,7 +7,7 @@
     <result column="name" jdbcType="VARCHAR" property="name"/>
     <result column="en_name" jdbcType="VARCHAR" property="enName"/>
     <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
-    <result column="order" jdbcType="BIGINT" property="order"/>
+    <result column="order" jdbcType="INTEGER" property="order"/>
   </resultMap>
   <sql id="Base_Column_List">
     id, `name`, en_name, parent_id, `order`
@@ -19,14 +19,15 @@
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from wxwork_party
+    delete
+    from wxwork_party
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkParty">
     insert into wxwork_party (id, `name`, en_name,
-    parent_id, `order`)
+                              parent_id, `order`)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR},
-    #{parentId,jdbcType=BIGINT}, #{order,jdbcType=BIGINT})
+            #{parentId,jdbcType=BIGINT}, #{order,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkParty">
     insert into wxwork_party
@@ -61,7 +62,7 @@
         #{parentId,jdbcType=BIGINT},
       </if>
       <if test="order != null">
-        #{order,jdbcType=BIGINT},
+        #{order,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -78,17 +79,17 @@
         parent_id = #{parentId,jdbcType=BIGINT},
       </if>
       <if test="order != null">
-        `order` = #{order,jdbcType=BIGINT},
+        `order` = #{order,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkParty">
     update wxwork_party
-    set `name` = #{name,jdbcType=VARCHAR},
-    en_name = #{enName,jdbcType=VARCHAR},
-    parent_id = #{parentId,jdbcType=BIGINT},
-    `order` = #{order,jdbcType=BIGINT}
+    set `name`    = #{name,jdbcType=VARCHAR},
+        en_name   = #{enName,jdbcType=VARCHAR},
+        parent_id = #{parentId,jdbcType=BIGINT},
+        `order`   = #{order,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

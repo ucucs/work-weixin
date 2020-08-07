@@ -21,6 +21,9 @@ public class WxUserDetail {
   @JsonAlias(value = "department")
   private Long[] partyIds;
 
+  @JsonAlias(value = "order")
+  private Integer[] orders;
+
   private String position;
   private String mobile;
   private Integer gender;
@@ -56,11 +59,14 @@ public class WxUserDetail {
   @JsonAlias(value = "external_profile")
   private Map<String, Object> externalProfile;
 
+  @JsonAlias(value = "extattr")
+  private Map<String, Object> extAttr;
+
   @JsonAlias(value = "open_userid")
   private String openUserId;
 
   @JsonAlias(value = "main_department")
-  private String mainPartyId;
+  private Integer mainPartyId;
 
   public static List<WxUserDetail> parseMsgBody(JsonNode msgNode) {
     ArrayNode userListNode = msgNode.withArray("userlist");

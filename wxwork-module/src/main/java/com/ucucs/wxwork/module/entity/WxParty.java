@@ -22,7 +22,7 @@ public class WxParty implements WxBodyConvert {
 
   @JsonAlias("parentid")
   private Long parentId;
-  private Long order;
+  private Integer order;
 
   @Override
   public Map<String, Object> wrapMsgBody() {
