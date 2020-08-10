@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.controller;
 
-import com.ucucs.wxwork.entity.Result;
+import com.ucucs.wxwork.core.entity.Result;
 import com.ucucs.wxwork.module.entity.wrap.CodeToSessionResult;
 import com.ucucs.wxwork.service.MiniProgramService;
 import lombok.AllArgsConstructor;

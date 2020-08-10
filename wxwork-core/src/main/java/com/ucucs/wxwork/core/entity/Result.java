@@ -1,6 +1,5 @@
-package com.ucucs.wxwork.entity;
+package com.ucucs.wxwork.core.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.ucucs.wxwork.core.exception.base.BaseException;
 import com.ucucs.wxwork.core.exception.type.ErrorType;
 import com.ucucs.wxwork.core.exception.type.SystemErrorType;
@@ -35,7 +34,6 @@ public class Result<T> implements Serializable {
   private final String message;
 
   /** 响应数据. */
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private T data;
 
   public Result(ErrorType errorType) {

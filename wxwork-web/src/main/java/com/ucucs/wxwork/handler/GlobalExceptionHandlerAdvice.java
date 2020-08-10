@@ -1,8 +1,8 @@
 package com.ucucs.wxwork.handler;
 
+import com.ucucs.wxwork.core.entity.Result;
 import com.ucucs.wxwork.core.exception.base.BaseException;
 import com.ucucs.wxwork.core.exception.type.SystemErrorType;
-import com.ucucs.wxwork.entity.Result;
 import com.ucucs.wxwork.exception.ValidateErrorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.controller;
 
-import com.ucucs.wxwork.entity.Result;
+import com.ucucs.wxwork.core.entity.Result;
 import com.ucucs.wxwork.module.entity.WxExternalContactDetail;
 import com.ucucs.wxwork.module.entity.WxExternalGroupChatDetail;
 import com.ucucs.wxwork.module.entity.wrap.GroupChatStatus;

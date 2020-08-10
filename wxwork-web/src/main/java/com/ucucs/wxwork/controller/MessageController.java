@@ -1,7 +1,7 @@
 package com.ucucs.wxwork.controller;
 
 import com.ucucs.wxwork.core.constant.MessageConsts.MsgType;
-import com.ucucs.wxwork.entity.Result;
+import com.ucucs.wxwork.core.entity.Result;
 import com.ucucs.wxwork.module.entity.WxMessage;
 import com.ucucs.wxwork.module.entity.wrap.MessageSendResult;
 import com.ucucs.wxwork.service.MessageService;

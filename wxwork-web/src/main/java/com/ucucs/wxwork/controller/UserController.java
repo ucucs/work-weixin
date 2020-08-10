@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.controller;
 
-import com.ucucs.wxwork.entity.Result;
+import com.ucucs.wxwork.core.entity.Result;
 import com.ucucs.wxwork.entity.param.user.UserCreateParam;
 import com.ucucs.wxwork.entity.param.user.UserUpdateParam;
 import com.ucucs.wxwork.module.entity.UserSimple;

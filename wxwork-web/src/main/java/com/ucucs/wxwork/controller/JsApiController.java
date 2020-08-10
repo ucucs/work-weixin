@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.controller;
 
-import com.ucucs.wxwork.entity.Result;
+import com.ucucs.wxwork.core.entity.Result;
 import com.ucucs.wxwork.module.entity.wrap.JsApiSignature;
 import com.ucucs.wxwork.service.JsApiService;
 import lombok.AllArgsConstructor;

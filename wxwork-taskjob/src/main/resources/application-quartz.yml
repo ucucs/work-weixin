@@ -1,0 +1,34 @@
+spring:
+  quartz:
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler #调度器实例名称
+            instanceId: AUTO #调度器实例编号自动生成
+            #skipUpdateCheck: true #跳过更新检查
+          jobStore:
+            acquireTriggersWithinLock: true #在锁定状态下获取触发器
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX #持久化方式配置
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate #持久化方式配置数据驱动，MySQL数据库
+            tablePrefix: qrtz_ #quartz相关数据表前缀名
+            isClustered: false #开启分布式部署
+            clusterCheckinInterval: 10000 #分布式节点有效性检查时间间隔，单位：毫秒
+            useProperties: true #配置JobDataMaps中的所有值都作为字符串
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool #线程池实现类
+            threadCount: 10 #执行最大并发线程数量
+            threadPriority: 5 #线程优先级
+            threadsInheritContextClassLoaderOfInitializingThread: true #配置是否启动自动加载数据库内的定时任务，默认true
+          dataSource:
+            default:
+              URL: jdbc:mysql://conn.thinkinpower.net:13306/platform_admin?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+              user: root
+              password: 123456
+              driver: com.mysql.cj.jdbc.Driver
+    job-store-type: jdbc #持久化类型
+    startup-delay: 30 #启动后延迟
+    overwrite-existing-jobs: true #覆盖存在的任务
+    wait-for-jobs-to-complete-on-shutdown: true #等待任务完成才关闭
+    jdbc:
+      initialize-schema: never #不初始化表,自己操作就好
