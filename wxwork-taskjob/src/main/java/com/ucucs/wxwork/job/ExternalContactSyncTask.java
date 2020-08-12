@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
 @Component
-public class UserSyncTask extends JobTask {
+public class ExternalContactSyncTask extends JobTask {
 
   private final UserService userService;
 
   @Override
   public void executeTask(JobExecutionContext jobExecutionContext) {
-    LOG.info("正在同步部门人员");
+    LOG.info("正在同步外部联系人");
     userService.syncUser();
   }
 }

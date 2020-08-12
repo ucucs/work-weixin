@@ -6,6 +6,7 @@ import com.ucucs.wxwork.mapper.ext.ExtWxWorkUserPartyMapper;
 import com.ucucs.wxwork.model.WxWorkUser;
 import com.ucucs.wxwork.model.WxWorkUserDetail;
 import com.ucucs.wxwork.model.WxWorkUserParty;
+import com.ucucs.wxwork.module.entity.UserSimple;
 import com.ucucs.wxwork.module.entity.WxUserDetail;
 import com.ucucs.wxwork.module.service.WxUserService;
 import com.ucucs.wxwork.module.util.BeanMapper;
@@ -27,6 +28,10 @@ public class UserService {
 
   public List<WxUserDetail> getUserList(Long partyId, Boolean fetchChild) {
     return wxUserService.list(partyId, fetchChild);
+  }
+
+  public List<UserSimple> getUserSimpleList(Long partyId, Boolean fetchChild) {
+    return wxUserService.listSimple(partyId, fetchChild);
   }
 
   public void syncUser() {

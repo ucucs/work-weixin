@@ -16,7 +16,7 @@
     <result column="ext_attr" jdbcType="VARCHAR" property="extAttr"/>
   </resultMap>
   <sql id="Base_Column_List">
-    user_id, `position`, gender, email, address, avatar, telephone, qr_code, external_profile, 
+    user_id, `position`, gender, email, address, avatar, telephone, qr_code, external_profile,
     external_position, ext_attr
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -32,14 +32,14 @@
   </delete>
   <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkUserDetail">
     insert into wxwork_user_detail (user_id, `position`, gender,
-                                    email, address, avatar,
-                                    telephone, qr_code, external_profile,
-                                    external_position, ext_attr)
+    email, address, avatar,
+    telephone, qr_code, external_profile,
+    external_position, ext_attr)
     values (#{userId,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER},
-            #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR},
-            #{telephone,jdbcType=VARCHAR}, #{qrCode,jdbcType=VARCHAR},
-            #{externalProfile,jdbcType=VARCHAR},
-            #{externalPosition,jdbcType=VARCHAR}, #{extAttr,jdbcType=VARCHAR})
+    #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR},
+    #{telephone,jdbcType=VARCHAR}, #{qrCode,jdbcType=VARCHAR},
+    #{externalProfile,jdbcType=VARCHAR},
+    #{externalPosition,jdbcType=VARCHAR}, #{extAttr,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkUserDetail">
     insert into wxwork_user_detail
@@ -152,16 +152,16 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkUserDetail">
     update wxwork_user_detail
-    set `position`        = #{position,jdbcType=VARCHAR},
-        gender            = #{gender,jdbcType=INTEGER},
-        email             = #{email,jdbcType=VARCHAR},
-        address           = #{address,jdbcType=VARCHAR},
-        avatar            = #{avatar,jdbcType=VARCHAR},
-        telephone         = #{telephone,jdbcType=VARCHAR},
-        qr_code           = #{qrCode,jdbcType=VARCHAR},
-        external_profile  = #{externalProfile,jdbcType=VARCHAR},
-        external_position = #{externalPosition,jdbcType=VARCHAR},
-        ext_attr          = #{extAttr,jdbcType=VARCHAR}
+    set `position` = #{position,jdbcType=VARCHAR},
+    gender = #{gender,jdbcType=INTEGER},
+    email = #{email,jdbcType=VARCHAR},
+    address = #{address,jdbcType=VARCHAR},
+    avatar = #{avatar,jdbcType=VARCHAR},
+    telephone = #{telephone,jdbcType=VARCHAR},
+    qr_code = #{qrCode,jdbcType=VARCHAR},
+    external_profile = #{externalProfile,jdbcType=VARCHAR},
+    external_position = #{externalPosition,jdbcType=VARCHAR},
+    ext_attr = #{extAttr,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -25,17 +25,12 @@ import org.springframework.stereotype.Component;
  */
 @AllArgsConstructor
 @Component
-public class ScheduleJobManageService {
+public class QuartzJobService {
 
-  private static final Logger LOG = LoggerFactory.getLogger(ScheduleJobManageService.class);
+  private static final Logger LOG = LoggerFactory.getLogger(QuartzJobService.class);
 
   private final SchedulerFactoryBean schedulerFactoryBean;
 
-  /**
-   * 初始化任务.
-   *
-   * @param job
-   */
   public void initJob(ScheduleJob job) throws Exception {
     if (job == null) {
       return;
@@ -43,45 +38,23 @@ public class ScheduleJobManageService {
     Scheduler scheduler = schedulerFactoryBean.getScheduler();
     TriggerKey triggerKey = TriggerKey.triggerKey(job.getJobName(), job.getJobGroup());
 
-    if (!ScheduleJob.STATUS_RUNNING.equals(job.getJobStatus())) {
-      this.deleteJob(scheduler, triggerKey);
-      LOG.info("删除任务{}", job.getJobName());
-    } else {
-      addJob(scheduler, triggerKey, job);
-      LOG.info(scheduler + "添加任务:{}", job);
-    }
+    addJob(scheduler, triggerKey, job);
+    LOG.info(scheduler + "添加任务:{}", job);
   }
 
-  /**
-   * 增加定时任务job
-   *
-   * @param scheduler 调度器
-   * @param triggerKey 触发器key
-   * @param job 任务
-   * @throws Exception
-   */
   private void addJob(Scheduler scheduler, TriggerKey triggerKey, ScheduleJob job)
       throws Exception {
     CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
     if (null == trigger) {
       /*不存在,创建一个*/
-      setJobExistTrigger(scheduler, trigger, triggerKey, job);
+      configJobExistTrigger(scheduler, job);
     } else {
       /*存在,直接用*/
-      setJobNoExistTrigger(scheduler, trigger, triggerKey, job);
+      configJobNoExistTrigger(scheduler, trigger, triggerKey, job);
     }
   }
 
-  /**
-   * 如果触发器key不存在,设置job
-   *
-   * @param scheduler 调度器
-   * @param trigger 触发器
-   * @param triggerKey 触发器key
-   * @param job 任务
-   * @throws Exception
-   */
-  private void setJobNoExistTrigger(
+  private void configJobNoExistTrigger(
       Scheduler scheduler, CronTrigger trigger, TriggerKey triggerKey, ScheduleJob job)
       throws Exception {
     /*Trigger已存在，那么更新相应的定时设置*/
@@ -93,33 +66,22 @@ public class ScheduleJobManageService {
     scheduler.rescheduleJob(triggerKey, trigger);
   }
 
-  /**
-   * 如果触发器key存在,设置job
-   *
-   * @param scheduler 调度器
-   * @param trigger 触发器
-   * @param triggerKey 触发器key
-   * @param job 任务
-   * @throws Exception
-   */
-  public void setJobExistTrigger(
-      Scheduler scheduler, CronTrigger trigger, TriggerKey triggerKey, ScheduleJob job)
-      throws Exception {
+  public void configJobExistTrigger(Scheduler scheduler, ScheduleJob job) throws Exception {
     Class clazz = Class.forName(job.getJobClass());
     /*设定job详情和属性*/
-    JobDetailImpl tail = new JobDetailImpl();
-    tail.setDescription(job.getDescription());
-    tail.setGroup(job.getJobGroup());
-    tail.setJobClass(clazz);
-    tail.setJobDataMap(new JobDataMap());
-    tail.setKey(JobKey.jobKey(job.getJobGroup(), job.getJobName()));
-    tail.setRequestsRecovery(job.isRequestsRecovery());
+    JobDetailImpl jobDetail = new JobDetailImpl();
+    jobDetail.setDescription(job.getDescription());
+    jobDetail.setGroup(job.getJobGroup());
+    jobDetail.setJobClass(clazz);
+    jobDetail.setJobDataMap(new JobDataMap());
+    jobDetail.setKey(JobKey.jobKey(job.getJobGroup(), job.getJobName()));
+    jobDetail.setRequestsRecovery(job.getRequestsRecovery());
     /*设置持久*/
-    tail.setDurability(job.isDruable());
-    JobDetail jobDetail = tail;
+    jobDetail.setDurability(job.getDruable());
+
     CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(job.getCronExpression());
 
-    trigger =
+    CronTrigger trigger =
         TriggerBuilder.newTrigger()
             .withIdentity(job.getJobName(), job.getJobGroup())
             .withSchedule(scheduleBuilder)
@@ -127,13 +89,6 @@ public class ScheduleJobManageService {
     scheduler.scheduleJob(jobDetail, trigger);
   }
 
-  /**
-   * 删除job
-   *
-   * @param scheduler
-   * @param triggerKey
-   * @throws Exception
-   */
   private void deleteJob(Scheduler scheduler, TriggerKey triggerKey) {
     if (null != triggerKey) {
       try {
@@ -147,12 +102,6 @@ public class ScheduleJobManageService {
     }
   }
 
-  /**
-   * 停止job
-   *
-   * @param name 名称
-   * @param group 分组
-   */
   public void stopJob(String name, String group) {
     Scheduler scheduler = schedulerFactoryBean.getScheduler();
     JobKey jobKey = JobKey.jobKey(name, group);
@@ -164,11 +113,6 @@ public class ScheduleJobManageService {
     }
   }
 
-  /**
-   * 添加job
-   *
-   * @param job
-   */
   public void addJob(ScheduleJob job) {
     Scheduler scheduler = schedulerFactoryBean.getScheduler();
     Class clazz = null;
@@ -187,7 +131,6 @@ public class ScheduleJobManageService {
     }
   }
 
-  /** 停止所有的job */
   public void pauseAll() {
     Scheduler scheduler = schedulerFactoryBean.getScheduler();
     try {
@@ -198,7 +141,6 @@ public class ScheduleJobManageService {
     }
   }
 
-  /** 关闭所有job */
   public void shutdown() {
     Scheduler scheduler = schedulerFactoryBean.getScheduler();
     try {
@@ -209,12 +151,6 @@ public class ScheduleJobManageService {
     }
   }
 
-  /**
-   * 恢复指定任务
-   *
-   * @param name
-   * @param group
-   */
   public void restartJob(String name, String group) {
     Scheduler scheduler = schedulerFactoryBean.getScheduler();
     JobKey jobKey = JobKey.jobKey(name, group);
@@ -226,7 +162,6 @@ public class ScheduleJobManageService {
     }
   }
 
-  /** 恢复所有job */
   public void restartAll() {
     Scheduler scheduler = schedulerFactoryBean.getScheduler();
     try {
@@ -237,12 +172,6 @@ public class ScheduleJobManageService {
     }
   }
 
-  /**
-   * 删除job
-   *
-   * @param jobName job名称
-   * @param jobGroup job 分组
-   */
   public void deleteJob(String jobName, String jobGroup) {
     Scheduler scheduler = schedulerFactoryBean.getScheduler();
     TriggerKey triggerKey = TriggerKey.triggerKey(jobName, jobGroup);

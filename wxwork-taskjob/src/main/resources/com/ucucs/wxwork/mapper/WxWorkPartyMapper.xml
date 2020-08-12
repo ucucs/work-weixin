@@ -25,9 +25,9 @@
   </delete>
   <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkParty">
     insert into wxwork_party (id, `name`, en_name,
-                              parent_id, `order`)
+    parent_id, `order`)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR},
-            #{parentId,jdbcType=BIGINT}, #{order,jdbcType=INTEGER})
+    #{parentId,jdbcType=BIGINT}, #{order,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkParty">
     insert into wxwork_party
@@ -86,10 +86,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkParty">
     update wxwork_party
-    set `name`    = #{name,jdbcType=VARCHAR},
-        en_name   = #{enName,jdbcType=VARCHAR},
-        parent_id = #{parentId,jdbcType=BIGINT},
-        `order`   = #{order,jdbcType=INTEGER}
+    set `name` = #{name,jdbcType=VARCHAR},
+    en_name = #{enName,jdbcType=VARCHAR},
+    parent_id = #{parentId,jdbcType=BIGINT},
+    `order` = #{order,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

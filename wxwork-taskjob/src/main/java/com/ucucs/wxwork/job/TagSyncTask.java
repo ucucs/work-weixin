@@ -1,19 +1,19 @@
 package com.ucucs.wxwork.job;
 
-import com.ucucs.wxwork.service.UserService;
+import com.ucucs.wxwork.service.TagService;
 import lombok.AllArgsConstructor;
 import org.quartz.JobExecutionContext;
 import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
 @Component
-public class UserSyncTask extends JobTask {
+public class TagSyncTask extends JobTask {
 
-  private final UserService userService;
+  private final TagService tagService;
 
   @Override
   public void executeTask(JobExecutionContext jobExecutionContext) {
-    LOG.info("正在同步部门人员");
-    userService.syncUser();
+    LOG.info("正在同步公司标签");
+    tagService.syncTag();
   }
 }

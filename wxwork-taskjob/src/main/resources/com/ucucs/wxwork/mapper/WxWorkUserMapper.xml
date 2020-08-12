@@ -15,7 +15,7 @@
     <result column="union_id" jdbcType="VARCHAR" property="unionId"/>
   </resultMap>
   <sql id="Base_Column_List">
-    user_id, `name`, english_name, mobile, thumb_avatar, `status`, `alias`, hide_mobile, 
+    user_id, `name`, english_name, mobile, thumb_avatar, `status`, `alias`, hide_mobile,
     open_userid, union_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -31,14 +31,14 @@
   </delete>
   <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkUser">
     insert into wxwork_user (user_id, `name`, english_name,
-                             mobile, thumb_avatar, `status`,
-                             `alias`, hide_mobile, open_userid,
-                             union_id)
+    mobile, thumb_avatar, `status`,
+    `alias`, hide_mobile, open_userid,
+    union_id)
     values (#{userId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{englishName,jdbcType=VARCHAR},
-            #{mobile,jdbcType=VARCHAR}, #{thumbAvatar,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
-            #{alias,jdbcType=VARCHAR}, #{hideMobile,jdbcType=INTEGER},
-            #{openUserid,jdbcType=VARCHAR},
-            #{unionId,jdbcType=VARCHAR})
+    #{mobile,jdbcType=VARCHAR}, #{thumbAvatar,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+    #{alias,jdbcType=VARCHAR}, #{hideMobile,jdbcType=INTEGER},
+    #{openUserid,jdbcType=VARCHAR},
+    #{unionId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkUser">
     insert into wxwork_user
@@ -142,15 +142,15 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkUser">
     update wxwork_user
-    set `name`       = #{name,jdbcType=VARCHAR},
-        english_name = #{englishName,jdbcType=VARCHAR},
-        mobile       = #{mobile,jdbcType=VARCHAR},
-        thumb_avatar = #{thumbAvatar,jdbcType=VARCHAR},
-        `status`     = #{status,jdbcType=INTEGER},
-        `alias`      = #{alias,jdbcType=VARCHAR},
-        hide_mobile  = #{hideMobile,jdbcType=INTEGER},
-        open_userid  = #{openUserid,jdbcType=VARCHAR},
-        union_id     = #{unionId,jdbcType=VARCHAR}
+    set `name` = #{name,jdbcType=VARCHAR},
+    english_name = #{englishName,jdbcType=VARCHAR},
+    mobile = #{mobile,jdbcType=VARCHAR},
+    thumb_avatar = #{thumbAvatar,jdbcType=VARCHAR},
+    `status` = #{status,jdbcType=INTEGER},
+    `alias` = #{alias,jdbcType=VARCHAR},
+    hide_mobile = #{hideMobile,jdbcType=INTEGER},
+    open_userid = #{openUserid,jdbcType=VARCHAR},
+    union_id = #{unionId,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

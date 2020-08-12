@@ -6,15 +6,15 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface WxWorkPartyMapper extends Serializable {
-    int deleteByPrimaryKey(Long id);
+  int deleteByPrimaryKey(Long id);
 
-    int insert(WxWorkParty record);
+  int insert(WxWorkParty record);
 
-    int insertSelective(WxWorkParty record);
+  int insertSelective(WxWorkParty record);
 
-    WxWorkParty selectByPrimaryKey(Long id);
+  WxWorkParty selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(WxWorkParty record);
+  int updateByPrimaryKeySelective(WxWorkParty record);
 
-    int updateByPrimaryKey(WxWorkParty record);
+  int updateByPrimaryKey(WxWorkParty record);
 }

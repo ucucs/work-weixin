@@ -1,6 +1,22 @@
 package com.ucucs.wxwork.job;
 
-public interface JobTask {
+import org.quartz.JobExecutionContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.quartz.QuartzJobBean;
 
-  void executeTask();
+public abstract class JobTask extends QuartzJobBean {
+
+  protected static final Logger LOG = LoggerFactory.getLogger(JobTask.class);
+
+  @Override
+  protected void executeInternal(JobExecutionContext jobExecutionContext) {
+    try {
+      executeTask(jobExecutionContext);
+    } catch (Exception ex) {
+      LOG.error("执行任务出错", ex);
+    }
+  }
+
+  public abstract void executeTask(JobExecutionContext jobExecutionContext);
 }

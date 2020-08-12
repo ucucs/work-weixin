@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucucs.wxwork.mapper.WxWorkExternalFollowTagMapper">
+  <resultMap id="BaseResultMap" type="com.ucucs.wxwork.model.WxWorkExternalFollowTag">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="external_user_id" jdbcType="VARCHAR" property="externalUserId"/>
+    <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+    <result column="type" jdbcType="INTEGER" property="type"/>
+    <result column="tag_name" jdbcType="VARCHAR" property="tagName"/>
+    <result column="group_name" jdbcType="VARCHAR" property="groupName"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, external_user_id, user_id, `type`, tag_name, group_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from wxwork_external_follow_tag
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wxwork_external_follow_tag
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkExternalFollowTag">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into wxwork_external_follow_tag (external_user_id, user_id, `type`,
+    tag_name, group_name)
+    values (#{externalUserId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+    #{type,jdbcType=INTEGER},
+    #{tagName,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkExternalFollowTag">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into wxwork_external_follow_tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="externalUserId != null">
+        external_user_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="tagName != null">
+        tag_name,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="externalUserId != null">
+        #{externalUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="tagName != null">
+        #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective"
+    parameterType="com.ucucs.wxwork.model.WxWorkExternalFollowTag">
+    update wxwork_external_follow_tag
+    <set>
+      <if test="externalUserId != null">
+        external_user_id = #{externalUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="tagName != null">
+        tag_name = #{tagName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkExternalFollowTag">
+    update wxwork_external_follow_tag
+    set external_user_id = #{externalUserId,jdbcType=VARCHAR},
+    user_id = #{userId,jdbcType=VARCHAR},
+    `type` = #{type,jdbcType=INTEGER},
+    tag_name = #{tagName,jdbcType=VARCHAR},
+    group_name = #{groupName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

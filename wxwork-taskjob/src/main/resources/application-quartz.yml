@@ -20,12 +20,6 @@ spring:
             threadCount: 10 #执行最大并发线程数量
             threadPriority: 5 #线程优先级
             threadsInheritContextClassLoaderOfInitializingThread: true #配置是否启动自动加载数据库内的定时任务，默认true
-          dataSource:
-            default:
-              URL: jdbc:mysql://conn.thinkinpower.net:13306/platform_admin?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-              user: root
-              password: 123456
-              driver: com.mysql.cj.jdbc.Driver
     job-store-type: jdbc #持久化类型
     startup-delay: 30 #启动后延迟
     overwrite-existing-jobs: true #覆盖存在的任务

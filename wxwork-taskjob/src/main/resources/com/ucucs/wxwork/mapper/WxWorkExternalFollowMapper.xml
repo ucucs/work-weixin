@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ucucs.wxwork.mapper.WxWorkExternalFollowMapper">
+  <resultMap id="BaseResultMap" type="com.ucucs.wxwork.model.WxWorkExternalFollow">
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="external_user_id" jdbcType="VARCHAR" property="externalUserId"/>
+    <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+    <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    <result column="description" jdbcType="VARCHAR" property="description"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="state" jdbcType="VARCHAR" property="state"/>
+    <result column="remark_corp_name" jdbcType="VARCHAR" property="remarkCorpName"/>
+    <result column="remark_mobiles" jdbcType="VARCHAR" property="remarkMobiles"/>
+    <result column="oper_userid" jdbcType="VARCHAR" property="operUserid"/>
+    <result column="add_way" jdbcType="INTEGER" property="addWay"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, external_user_id, user_id, remark, description, create_time, `state`, remark_corp_name,
+    remark_mobiles, oper_userid, add_way
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from wxwork_external_follow
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from wxwork_external_follow
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkExternalFollow">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into wxwork_external_follow (external_user_id, user_id, remark,
+    description, create_time, `state`,
+    remark_corp_name, remark_mobiles, oper_userid,
+    add_way)
+    values (#{externalUserId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+    #{remark,jdbcType=VARCHAR},
+    #{description,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR},
+    #{remarkCorpName,jdbcType=VARCHAR}, #{remarkMobiles,jdbcType=VARCHAR},
+    #{operUserid,jdbcType=VARCHAR},
+    #{addWay,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkExternalFollow">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into wxwork_external_follow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="externalUserId != null">
+        external_user_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="remarkCorpName != null">
+        remark_corp_name,
+      </if>
+      <if test="remarkMobiles != null">
+        remark_mobiles,
+      </if>
+      <if test="operUserid != null">
+        oper_userid,
+      </if>
+      <if test="addWay != null">
+        add_way,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="externalUserId != null">
+        #{externalUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkCorpName != null">
+        #{remarkCorpName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkMobiles != null">
+        #{remarkMobiles,jdbcType=VARCHAR},
+      </if>
+      <if test="operUserid != null">
+        #{operUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="addWay != null">
+        #{addWay,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective"
+    parameterType="com.ucucs.wxwork.model.WxWorkExternalFollow">
+    update wxwork_external_follow
+    <set>
+      <if test="externalUserId != null">
+        external_user_id = #{externalUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkCorpName != null">
+        remark_corp_name = #{remarkCorpName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkMobiles != null">
+        remark_mobiles = #{remarkMobiles,jdbcType=VARCHAR},
+      </if>
+      <if test="operUserid != null">
+        oper_userid = #{operUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="addWay != null">
+        add_way = #{addWay,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkExternalFollow">
+    update wxwork_external_follow
+    set external_user_id = #{externalUserId,jdbcType=VARCHAR},
+    user_id = #{userId,jdbcType=VARCHAR},
+    remark = #{remark,jdbcType=VARCHAR},
+    description = #{description,jdbcType=VARCHAR},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    `state` = #{state,jdbcType=VARCHAR},
+    remark_corp_name = #{remarkCorpName,jdbcType=VARCHAR},
+    remark_mobiles = #{remarkMobiles,jdbcType=VARCHAR},
+    oper_userid = #{operUserid,jdbcType=VARCHAR},
+    add_way = #{addWay,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

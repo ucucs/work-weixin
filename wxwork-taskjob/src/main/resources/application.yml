@@ -3,6 +3,7 @@ spring:
     include: # Default active profile
       - database
       - wxwork
+      - quartz
   servlet:
     multipart: # Multipart configuration
       max-file-size: 20MB

@@ -24,13 +24,13 @@
     delete
     from wxwork_user_party
     where user_id = #{userId,jdbcType=VARCHAR}
-      and party_id = #{partyId,jdbcType=BIGINT}
+    and party_id = #{partyId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkUserParty">
     insert into wxwork_user_party (user_id, party_id, `order`,
-                                   charge_leader, main_party)
+    charge_leader, main_party)
     values (#{userId,jdbcType=VARCHAR}, #{partyId,jdbcType=BIGINT}, #{order,jdbcType=INTEGER},
-            #{chargeLeader,jdbcType=INTEGER}, #{mainParty,jdbcType=INTEGER})
+    #{chargeLeader,jdbcType=INTEGER}, #{mainParty,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkUserParty">
     insert into wxwork_user_party
@@ -87,10 +87,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ucucs.wxwork.model.WxWorkUserParty">
     update wxwork_user_party
-    set `order`       = #{order,jdbcType=INTEGER},
-        charge_leader = #{chargeLeader,jdbcType=INTEGER},
-        main_party    = #{mainParty,jdbcType=INTEGER}
+    set `order` = #{order,jdbcType=INTEGER},
+    charge_leader = #{chargeLeader,jdbcType=INTEGER},
+    main_party = #{mainParty,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=VARCHAR}
-      and party_id = #{partyId,jdbcType=BIGINT}
+    and party_id = #{partyId,jdbcType=BIGINT}
   </update>
 </mapper>
