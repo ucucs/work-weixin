@@ -29,24 +29,22 @@
     where external_user_id = #{externalUserId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.ucucs.wxwork.model.WxWorkExternalContact">
-    <selectKey keyProperty="externalUserId" order="AFTER" resultType="java.lang.String">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into wxwork_external_contact (`position`, `name`, avatar,
-    corp_name, corp_full_name, `type`,
-    gender, union_id, external_profile
-    )
-    values (#{position,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR},
-    #{corpName,jdbcType=VARCHAR}, #{corpFullName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
-    #{gender,jdbcType=INTEGER}, #{unionId,jdbcType=VARCHAR}, #{externalProfile,jdbcType=VARCHAR}
-    )
+    insert into wxwork_external_contact (external_user_id, `position`, `name`,
+    avatar, corp_name, corp_full_name,
+    `type`, gender, union_id,
+    external_profile)
+    values (#{externalUserId,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR},
+    #{name,jdbcType=VARCHAR},
+    #{avatar,jdbcType=VARCHAR}, #{corpName,jdbcType=VARCHAR}, #{corpFullName,jdbcType=VARCHAR},
+    #{type,jdbcType=INTEGER}, #{gender,jdbcType=INTEGER}, #{unionId,jdbcType=VARCHAR},
+    #{externalProfile,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ucucs.wxwork.model.WxWorkExternalContact">
-    <selectKey keyProperty="externalUserId" order="AFTER" resultType="java.lang.String">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into wxwork_external_contact
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="externalUserId != null">
+        external_user_id,
+      </if>
       <if test="position != null">
         `position`,
       </if>
@@ -76,6 +74,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="externalUserId != null">
+        #{externalUserId,jdbcType=VARCHAR},
+      </if>
       <if test="position != null">
         #{position,jdbcType=VARCHAR},
       </if>

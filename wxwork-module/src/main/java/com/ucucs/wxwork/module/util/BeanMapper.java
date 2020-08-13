@@ -1,5 +1,6 @@
 package com.ucucs.wxwork.module.util;
 
+import com.ucucs.wxwork.module.function.IAction;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,6 +31,12 @@ public class BeanMapper {
     return baseMapper(source, target);
   }
 
+  public static <O, T> T mapper(O source, Class<T> target, IAction<T> action) {
+    T instance = baseMapper(source, target);
+    action.run(instance);
+    return instance;
+  }
+
   /**
    * 集合对象映射复制.
    *
@@ -47,6 +54,19 @@ public class BeanMapper {
 
     for (Object item : list) {
       resultList.add(mapper(item, targetClass));
+    }
+    return resultList;
+  }
+
+  public static <T> List<T> mapperList(List<?> list, Class<T> targetClass, IAction<T> action) {
+    List<T> resultList = new LinkedList<>();
+
+    if (CollectionUtils.isEmpty(list)) {
+      return resultList;
+    }
+
+    for (Object item : list) {
+      resultList.add(mapper(item, targetClass, action));
     }
     return resultList;
   }

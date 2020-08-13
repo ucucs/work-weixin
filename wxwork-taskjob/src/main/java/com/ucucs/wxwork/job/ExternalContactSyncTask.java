@@ -1,6 +1,6 @@
 package com.ucucs.wxwork.job;
 
-import com.ucucs.wxwork.service.UserService;
+import com.ucucs.wxwork.service.ExternalContactService;
 import lombok.AllArgsConstructor;
 import org.quartz.JobExecutionContext;
 import org.springframework.stereotype.Component;
@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExternalContactSyncTask extends JobTask {
 
-  private final UserService userService;
+  private final ExternalContactService externalContactService;
 
   @Override
   public void executeTask(JobExecutionContext jobExecutionContext) {
     LOG.info("正在同步外部联系人");
-    userService.syncUser();
+    externalContactService.syncContact();
   }
 }
