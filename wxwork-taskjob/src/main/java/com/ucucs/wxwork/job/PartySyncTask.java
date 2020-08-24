@@ -13,7 +13,7 @@ public class PartySyncTask extends JobTask {
 
   @Override
   public void executeTask(JobExecutionContext jobExecutionContext) {
-    LOG.info("正在同步组织架构");
+    logger.info("正在同步组织架构");
     partyService.syncParty();
   }
 }

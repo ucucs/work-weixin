@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ExternalContactService {
 
-  private static final Logger LOG = LoggerFactory.getLogger(ExternalContactService.class);
+  private static final Logger logger = LoggerFactory.getLogger(ExternalContactService.class);
 
   private final WxExternalContactService wxExternalContactService;
   private final UserService userService;
@@ -60,7 +60,7 @@ public class ExternalContactService {
           }
         }
       } catch (Exception ex) {
-        LOG.error("企业", ex);
+        logger.error("企业", ex);
       }
     }
   }

@@ -13,7 +13,7 @@ public class UserSyncTask extends JobTask {
 
   @Override
   public void executeTask(JobExecutionContext jobExecutionContext) {
-    LOG.info("正在同步部门人员");
+    logger.info("正在同步部门人员");
     userService.syncUser();
   }
 }

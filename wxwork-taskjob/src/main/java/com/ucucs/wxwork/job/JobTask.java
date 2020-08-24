@@ -7,14 +7,14 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 
 public abstract class JobTask extends QuartzJobBean {
 
-  protected static final Logger LOG = LoggerFactory.getLogger(JobTask.class);
+  protected static final Logger logger = LoggerFactory.getLogger(JobTask.class);
 
   @Override
   protected void executeInternal(JobExecutionContext jobExecutionContext) {
     try {
       executeTask(jobExecutionContext);
     } catch (Exception ex) {
-      LOG.error("执行任务出错", ex);
+      logger.error("执行任务出错", ex);
     }
   }
 

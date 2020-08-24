@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
  */
 public class JsonUtil {
 
-  private static final Logger LOG = LoggerFactory.getLogger(JsonUtil.class);
+  private static final Logger logger = LoggerFactory.getLogger(JsonUtil.class);
 
   private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -72,7 +72,7 @@ public class JsonUtil {
     try {
       return objectMapper.writeValueAsString(obj);
     } catch (JsonProcessingException e) {
-      LOG.warn("Serialize Object to String error : {}", e.getMessage());
+      logger.warn("Serialize Object to String error : {}", e.getMessage());
       return null;
     }
   }
@@ -90,7 +90,7 @@ public class JsonUtil {
     try {
       return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
     } catch (JsonProcessingException e) {
-      LOG.warn("Serialize Object to String error : {}", e.getMessage());
+      logger.warn("Serialize Object to String error : {}", e.getMessage());
       return null;
     }
   }
@@ -115,7 +115,7 @@ public class JsonUtil {
                       SimpleBeanPropertyFilter.serializeAllExcept(excludeProperties)))
           .writeValueAsString(obj);
     } catch (Exception ex) {
-      LOG.error("Serialize Object To Json Failed:{} {} {}", obj, excludeProperties, ex);
+      logger.error("Serialize Object To Json Failed:{} {} {}", obj, excludeProperties, ex);
     }
 
     return null;
@@ -128,7 +128,7 @@ public class JsonUtil {
     try {
       return objectMapper.readTree(str);
     } catch (Exception e) {
-      LOG.warn("Parse String to Object error : {}", e.getMessage());
+      logger.warn("Parse String to Object error : {}", e.getMessage());
       return null;
     }
   }
@@ -147,7 +147,7 @@ public class JsonUtil {
     try {
       return objectMapper.readValue(str, clazz);
     } catch (Exception e) {
-      LOG.warn("Parse String to Object error : {}", e.getMessage());
+      logger.warn("Parse String to Object error : {}", e.getMessage());
       return null;
     }
   }
@@ -167,7 +167,7 @@ public class JsonUtil {
     try {
       return objectMapper.readValue(str, typeReference);
     } catch (IOException e) {
-      LOG.warn("Parse String to Object error", e);
+      logger.warn("Parse String to Object error", e);
       return null;
     }
   }
@@ -187,7 +187,7 @@ public class JsonUtil {
       JavaType javaType = createCollectionType(collectionClass, elementClass);
       return objectMapper.readValue(str, javaType);
     } catch (IOException e) {
-      LOG.warn("Parse String to Collection Type Object error : {}" + e.getMessage());
+      logger.warn("Parse String to Collection Type Object error : {}" + e.getMessage());
       return null;
     }
   }
@@ -201,7 +201,7 @@ public class JsonUtil {
       JavaType javaType = createCollectionType(ArrayList.class, clazz);
       return objectMapper.readValue(jsonArrayString, javaType);
     } catch (Exception ex) {
-      LOG.error("DeSerialize Object Json Failed:{} {} {}", jsonArrayString, clazz, ex);
+      logger.error("DeSerialize Object Json Failed:{} {} {}", jsonArrayString, clazz, ex);
     }
 
     return null;
@@ -228,7 +228,7 @@ public class JsonUtil {
       JavaType javaType = createMapType(mapClass, keyClass, valueClass);
       return objectMapper.readValue(str, javaType);
     } catch (IOException e) {
-      LOG.warn("Parse String to Map Type Object error : {}" + e.getMessage());
+      logger.warn("Parse String to Map Type Object error : {}" + e.getMessage());
       return null;
     }
   }
@@ -237,7 +237,7 @@ public class JsonUtil {
     try {
       return objectMapper.convertValue(object, new TypeReference<Map<String, Object>>() {});
     } catch (Exception e) {
-      LOG.warn("Parse String to Map Type Object error : {}" + e.getMessage());
+      logger.warn("Parse String to Map Type Object error : {}" + e.getMessage());
       return null;
     }
   }

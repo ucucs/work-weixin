@@ -12,7 +12,7 @@ import org.springframework.util.CollectionUtils;
 /** 对象映射复制帮助类. */
 public class BeanMapper {
 
-  private static final Logger LOG = LoggerFactory.getLogger(BeanMapper.class);
+  private static final Logger logger = LoggerFactory.getLogger(BeanMapper.class);
 
   /** 映射缓存,提高效率. */
   private static final ConcurrentHashMap<String, BeanCopier> MAPPER_CACHE =
@@ -93,7 +93,7 @@ public class BeanMapper {
     try {
       instance = target.getDeclaredConstructor().newInstance();
     } catch (Exception e) {
-      LOG.error("mapper 创建对象异常" + e.getMessage());
+      logger.error("mapper 创建对象异常" + e.getMessage());
     }
     copier.copy(source, instance, null);
     return instance;

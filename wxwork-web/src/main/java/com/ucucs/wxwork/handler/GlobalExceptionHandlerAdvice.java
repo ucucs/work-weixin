@@ -27,17 +27,17 @@ import org.springframework.web.multipart.MultipartException;
 @RestControllerAdvice
 public class GlobalExceptionHandlerAdvice {
 
-  private static final Logger LOG = LoggerFactory.getLogger(GlobalExceptionHandlerAdvice.class);
+  private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandlerAdvice.class);
 
   @ExceptionHandler(ServletRequestBindingException.class)
   public Result<?> servletRequestBindingExceptionHandler(ServletRequestBindingException ex) {
-    LOG.error("servlet request bind exception:{}", ex.getMessage());
+    logger.error("servlet request bind exception:{}", ex.getMessage());
     return Result.fail(ValidateErrorType.ILLEGAL_ARGUMENT_TYPE, ex);
   }
 
   @ExceptionHandler(BindException.class)
   public Result<?> bindExceptionHandler(BindException ex) {
-    LOG.error("param bind exception:{}", ex.getMessage());
+    logger.error("param bind exception:{}", ex.getMessage());
     BindingResult bindingTTResult = ex.getBindingResult();
     String fieldError =
         bindingTTResult.getFieldError() == null
@@ -49,7 +49,7 @@ public class GlobalExceptionHandlerAdvice {
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public Result<?> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException ex) {
-    LOG.error("method argument valid exception:{}", ex.getMessage());
+    logger.error("method argument valid exception:{}", ex.getMessage());
     BindingResult bindingTTResult = ex.getBindingResult();
     String fieldError =
         bindingTTResult.getFieldError() == null
@@ -62,45 +62,45 @@ public class GlobalExceptionHandlerAdvice {
   @ExceptionHandler(value = {MissingServletRequestParameterException.class})
   public Result<?> missingServletRequestParameterExceptionHanlder(
       MissingServletRequestParameterException ex) {
-    LOG.error("missing servlet request parameter exception:{}", ex.getMessage());
+    logger.error("missing servlet request parameter exception:{}", ex.getMessage());
     return Result.fail(ValidateErrorType.MISSING_ARGUMENT);
   }
 
   @ExceptionHandler(HttpMessageNotReadableException.class)
   public Result<?> httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException ex) {
-    LOG.error("request body read exception:{}", ex.getMessage());
+    logger.error("request body read exception:{}", ex.getMessage());
     return Result.fail(ValidateErrorType.ILLEGAL_BODY);
   }
 
   @ExceptionHandler(MultipartException.class)
   public Result<?> multipartExceptionHandler(MultipartException ex) {
-    LOG.error("request multipart file size limit exception:{}", ex.getMessage());
+    logger.error("request multipart file size limit exception:{}", ex.getMessage());
     return Result.fail(ValidateErrorType.ILLEGAL_MULTIPART_ERROR, ex);
   }
 
   @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
   public Result<?> forbiddenErrorHandler(HttpRequestMethodNotSupportedException ex) {
-    LOG.error("request method support exception:{}", ex.getMessage());
+    logger.error("request method support exception:{}", ex.getMessage());
     return Result.fail(ValidateErrorType.METHOD_NOT_ALLOWED);
   }
 
   @ExceptionHandler(value = {BaseException.class})
   public Result<?> baseExceptionHandler(BaseException ex) {
-    LOG.error("base exception:{}", ex.getMessage());
+    logger.error("base exception:{}", ex.getMessage());
     return Result.fail(ex.getErrorType(), ex.getMessage());
   }
 
   @ExceptionHandler(RuntimeException.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public Result<?> runtimeExceptionHandler(RuntimeException ex) {
-    LOG.error("runtime exception", ex);
+    logger.error("runtime exception", ex);
     return Result.fail(SystemErrorType.INTERNAL_SERVER_ERROR);
   }
 
   @ExceptionHandler(value = {Throwable.class})
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public Result<?> throwableHandler(Throwable ex) {
-    LOG.error("throwable exception", ex);
+    logger.error("throwable exception", ex);
     return Result.fail(SystemErrorType.SYSTEM_ERROR);
   }
 }

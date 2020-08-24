@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OkHttpComponent {
 
-  private static final Logger LOG = LoggerFactory.getLogger(OkHttpComponent.class);
+  private static final Logger logger = LoggerFactory.getLogger(OkHttpComponent.class);
 
   private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
   private static final MediaType XML = MediaType.parse("application/xml; charset=utf-8");
@@ -77,7 +77,7 @@ public class OkHttpComponent {
     }
 
     Request request = builder.url(reqUrl).build();
-    LOG.info("do get request and url[{}]", reqUrl);
+    logger.info("do get request and url[{}]", reqUrl);
     return execute(request);
   }
 
@@ -122,7 +122,7 @@ public class OkHttpComponent {
       }
     }
     Request request = new Request.Builder().url(url).post(builder.build()).build();
-    LOG.info("do post request and url[{}]", url);
+    logger.info("do post request and url[{}]", url);
 
     return execute(request);
   }
@@ -135,7 +135,7 @@ public class OkHttpComponent {
    * @return string
    */
   public String doPostJson(String url, String json) {
-    LOG.info("do post request and url[{}]", url);
+    logger.info("do post request and url[{}]", url);
     return exectePost(url, json, JSON);
   }
 
@@ -149,7 +149,7 @@ public class OkHttpComponent {
    */
   public String doPostJson(String url, String json, Map<String, Object> params) {
     String reqUrl = buildUrl(url, params);
-    LOG.info("do post request and url[{}]", reqUrl);
+    logger.info("do post request and url[{}]", reqUrl);
     return exectePost(reqUrl, json, JSON);
   }
 
@@ -161,7 +161,7 @@ public class OkHttpComponent {
    * @return string
    */
   public String doPostXml(String url, String xml) {
-    LOG.info("do post request and url[{}]", url);
+    logger.info("do post request and url[{}]", url);
     return exectePost(url, xml, XML);
   }
 
@@ -178,7 +178,7 @@ public class OkHttpComponent {
         return response.body() != null ? response.body().string() : "";
       }
     } catch (Exception ex) {
-      LOG.error("Execute request error", ex);
+      logger.error("Execute request error", ex);
     }
     return "";
   }

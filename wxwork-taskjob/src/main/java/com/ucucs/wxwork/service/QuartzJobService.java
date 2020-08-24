@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class QuartzJobService {
 
-  private static final Logger LOG = LoggerFactory.getLogger(QuartzJobService.class);
+  private static final Logger logger = LoggerFactory.getLogger(QuartzJobService.class);
 
   private final SchedulerFactoryBean schedulerFactoryBean;
 
@@ -39,7 +39,7 @@ public class QuartzJobService {
     TriggerKey triggerKey = TriggerKey.triggerKey(job.getJobName(), job.getJobGroup());
 
     addJob(scheduler, triggerKey, job);
-    LOG.info(scheduler + "添加任务:{}", job);
+    logger.info(scheduler + "添加任务:{}", job);
   }
 
   private void addJob(Scheduler scheduler, TriggerKey triggerKey, ScheduleJob job)
@@ -94,11 +94,11 @@ public class QuartzJobService {
       try {
         scheduler.unscheduleJob(triggerKey);
       } catch (SchedulerException e) {
-        LOG.error("删除job异常");
+        logger.error("删除job异常");
         e.printStackTrace();
       }
     } else {
-      LOG.warn("删除job无效,没有指定对应的Trigger");
+      logger.warn("删除job无效,没有指定对应的Trigger");
     }
   }
 
@@ -108,7 +108,7 @@ public class QuartzJobService {
     try {
       scheduler.pauseJob(jobKey);
     } catch (SchedulerException e) {
-      LOG.error("停止job异常");
+      logger.error("停止job异常");
       e.printStackTrace();
     }
   }
@@ -123,7 +123,7 @@ public class QuartzJobService {
       try {
         scheduler.addJob(jobDetail, true);
       } catch (SchedulerException e) {
-        LOG.error("添加job出现异常");
+        logger.error("添加job出现异常");
         e.printStackTrace();
       }
     } catch (ClassNotFoundException e) {
@@ -136,7 +136,7 @@ public class QuartzJobService {
     try {
       scheduler.pauseAll();
     } catch (SchedulerException e) {
-      LOG.error("暂停所有job出现异常");
+      logger.error("暂停所有job出现异常");
       e.printStackTrace();
     }
   }
@@ -146,7 +146,7 @@ public class QuartzJobService {
     try {
       scheduler.shutdown();
     } catch (SchedulerException e) {
-      LOG.error("关闭所有Job出现异常!");
+      logger.error("关闭所有Job出现异常!");
       e.printStackTrace();
     }
   }
@@ -157,7 +157,7 @@ public class QuartzJobService {
     try {
       scheduler.resumeJob(jobKey);
     } catch (SchedulerException e) {
-      LOG.error("恢复任务异常");
+      logger.error("恢复任务异常");
       e.printStackTrace();
     }
   }
@@ -167,7 +167,7 @@ public class QuartzJobService {
     try {
       scheduler.resumeAll();
     } catch (SchedulerException e) {
-      LOG.error("恢复所有job异常");
+      logger.error("恢复所有job异常");
       e.printStackTrace();
     }
   }
@@ -179,7 +179,7 @@ public class QuartzJobService {
       /*scheduler.deleteJob(JobKey.jobKey(jobName,jobGroup));*/
       scheduler.unscheduleJob(triggerKey);
     } catch (SchedulerException e) {
-      LOG.error("删除job" + jobGroup + "." + jobName + "出现异常");
+      logger.error("删除job" + jobGroup + "." + jobName + "出现异常");
       e.printStackTrace();
     }
   }

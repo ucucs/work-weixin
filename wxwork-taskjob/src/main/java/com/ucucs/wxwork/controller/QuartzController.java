@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/quartz")
 public class QuartzController {
 
-  private static final Logger LOG = LoggerFactory.getLogger(QuartzController.class);
+  private static final Logger logger = LoggerFactory.getLogger(QuartzController.class);
 
   private final QuartzJobService scheduleJobManage;
 
@@ -30,7 +30,7 @@ public class QuartzController {
       scheduleJobManage.initJob(scheduleJob);
       return Result.success("添加job成功");
     } catch (Exception ex) {
-      LOG.error("添加job异常{}", scheduleJob, ex);
+      logger.error("添加job异常{}", scheduleJob, ex);
       return Result.fail("添加job异常");
     }
   }

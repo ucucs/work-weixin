@@ -13,7 +13,7 @@ public class ExternalContactSyncTask extends JobTask {
 
   @Override
   public void executeTask(JobExecutionContext jobExecutionContext) {
-    LOG.info("正在同步外部联系人");
+    logger.info("正在同步外部联系人");
     externalContactService.syncContact();
   }
 }

@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
 @Service
 public class WxWorkServiceImpl implements WxWorkService {
 
-  private static final Logger LOG = LoggerFactory.getLogger(WxWorkServiceImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(WxWorkServiceImpl.class);
 
   private final OkHttpComponent okHttpComponent;
 
@@ -80,7 +80,7 @@ public class WxWorkServiceImpl implements WxWorkService {
         break;
     }
 
-    LOG.info("微信接口返回{} {} {}", urlParams, bodyObject, rspString);
+    logger.info("微信接口返回{} {} {}", urlParams, bodyObject, rspString);
 
     JsonNode rspNode = JsonUtil.fromJson(rspString);
 
@@ -99,7 +99,7 @@ public class WxWorkServiceImpl implements WxWorkService {
   private JsonNode getToken(String category) {
     String secret = wxConfigManage.getTypeSecret(category);
     if (!StringUtils.hasText(secret)) {
-      LOG.warn("未找到指定类型的密钥:{}", category);
+      logger.warn("未找到指定类型的密钥:{}", category);
       throw new WeiXinException("未找到指定类型的密钥");
     }
 

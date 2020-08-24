@@ -13,7 +13,7 @@ public class TagSyncTask extends JobTask {
 
   @Override
   public void executeTask(JobExecutionContext jobExecutionContext) {
-    LOG.info("正在同步公司标签");
+    logger.info("正在同步公司标签");
     tagService.syncTag();
   }
 }
